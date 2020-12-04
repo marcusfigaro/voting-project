@@ -4,29 +4,1129 @@ title: "Personal Website"
 
 ## R Markdown
 
-```{r}
-plot(ElectionResults_2012)
-```
+# Data
+library("readr")
+dir = "/Users/mfigaro/Documents/STA 5104 Project/precinctlevelelectionresults2012gen (1)"
+setwd(dir)
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+## 2012 General data
+genPrecinct_2012 <- read_csv("2012GenPrecinctCrossReference 2.csv")
+
+# Voting Graphs
+library(tidyverse)
+library(ggplot2)
 
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+# Alachua
+ALA_data_2012 <- read_tsv("ALA_PctResults2012GEN.txt",col_names = FALSE)
+colnames(ALA_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+# Brevard
+BRE_data_2012 <- read_tsv("BRE_PctResults2012GEN.txt",col_names = FALSE)
+colnames(BRE_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
 
-```{r cars}
-summary(cars)
-```
+# Broward
+BRO_data_2012 <- read_tsv("BRO_PctResults2012GEN.txt",col_names = FALSE)
+colnames(BRO_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
 
-## Including Plots
+# Collier
+CLL_data_2012 <- read_tsv("CLL_PctResults2012GEN.txt",col_names = FALSE)
+colnames(CLL_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
 
-You can also embed plots, for example:
+# Miami-Dade
+DAD_data_2012 <- read_tsv("DAD_PctResults2012GEN.txt",col_names = FALSE)
+colnames(DAD_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+# Duval
+DUV_data_2012 <- read_tsv("DUV_PctResults2012GEN.txt",col_names = FALSE)
+colnames(DUV_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+# Flagler
+FLA_data_2012 <- read_tsv("FLA_PctResults2012GEN.txt",col_names = FALSE)
+colnames(FLA_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Hillsborough
+HIL_data_2012 <- read_tsv("HIL_PctResults2012GEN.txt",col_names = FALSE)
+colnames(HIL_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# INDIAN RIVER
+IND_data_2012 <- read_tsv("IND_PctResults2012GEN.txt",col_names = FALSE)
+colnames(IND_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Lake
+LAK_data_2012 <- read_tsv("LAK_PctResults2012GEN.txt",col_names = FALSE)
+colnames(LAK_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# LEE
+LEE_data_2012 <- read_tsv("LEE_PctResults2012GEN.txt",col_names = FALSE)
+colnames(LEE_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# LEON
+LEO_data_2012 <- read_tsv("LEO_PctResults2012GEN.txt",col_names = FALSE)
+colnames(LEO_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Manatee
+MAN_data_2012 <- read_tsv("MAN_PctResults2012GEN.txt",col_names = FALSE)
+colnames(MAN_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Orange
+ORA_data_2012 <- read_tsv("ORA_PctResults2012GEN.txt",col_names = FALSE)
+colnames(ORA_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Osceola
+OSC_data_2012 <- read_tsv("OSC_PctResults2012GEN.txt",col_names = FALSE)
+colnames(OSC_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Pinellas
+PIN_data_2012 <- read_tsv("PIN_PctResults2012GEN.txt",col_names = FALSE)
+colnames(PIN_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Polk
+POL_data_2012 <- read_tsv("POL_PctResults2012GEN.txt",col_names = FALSE)
+colnames(POL_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Sarasota
+SAR_data_2012 <- read_tsv("SAR_PctResults2012GEN.txt",col_names = FALSE)
+colnames(SAR_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Seminole
+SEM_data_2012 <- read_tsv("SEM_PctResults2012GEN.txt",col_names = FALSE)
+colnames(SEM_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# St. Lucie
+STL_data_2012 <- read_tsv("STL_PctResults2012GEN.txt",col_names = FALSE)
+colnames(STL_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Sumter
+SUM_data_2012 <- read_tsv("SUM_PctResults2012GEN.txt",col_names = FALSE)
+colnames(SUM_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Volusia
+VOL_data_2012 <- read_tsv("VOL_PctResults2012GEN.txt",col_names = FALSE)
+colnames(VOL_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Pasco
+PAS_data_2012 <- read_tsv("PAS_PctResults2012GEN.txt",col_names = FALSE)
+colnames(PAS_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Marion
+MRN_data_2012 <- read_tsv("MRN_PctResults2012GEN.txt",col_names = FALSE)
+colnames(MRN_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Monroe
+MON_data_2012 <- read_tsv("MON_PctResults2012GEN.txt",col_names = FALSE)
+colnames(MON_data_2012) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+ALA_data_2012 <- ALA_data_2012 %>% filter(Contest == "President of the United States")
+BRE_data_2012 <- BRE_data_2012 %>% filter(Contest == "President of the United States")
+BRO_data_2012 <- BRO_data_2012 %>% filter(Contest == "President of the United States")
+CLL_data_2012 <- CLL_data_2012 %>% filter(Contest == "President of the United States")
+DAD_data_2012 <- DAD_data_2012 %>% filter(Contest == "President of the United States")
+DUV_data_2012 <- DUV_data_2012 %>% filter(Contest == "President of the United States")
+FLA_data_2012 <- FLA_data_2012 %>% filter(Contest == "President of the United States")
+HIL_data_2012 <- HIL_data_2012 %>% filter(Contest == "President of the United States")
+IND_data_2012 <- IND_data_2012 %>% filter(Contest == "President of the United States")
+LAK_data_2012 <- LAK_data_2012 %>% filter(Contest == "President of the United States")
+LEE_data_2012 <- LEE_data_2012 %>% filter(Contest == "President of the United States")
+LEO_data_2012 <- LEO_data_2012 %>% filter(Contest == "President of the United States")
+MAN_data_2012 <- MAN_data_2012 %>% filter(Contest == "President of the United States")
+MON_data_2012 <- MON_data_2012 %>% filter(Contest == "President of the United States")
+MRN_data_2012 <- MRN_data_2012 %>% filter(Contest == "President of the United States")
+ORA_data_2012 <- ORA_data_2012 %>% filter(Contest == "President of the United States")
+OSC_data_2012 <- OSC_data_2012 %>% filter(Contest == "President of the United States")
+PAS_data_2012 <- PAS_data_2012 %>% filter(Contest == "President of the United States")
+PIN_data_2012 <- PIN_data_2012 %>% filter(Contest == "President of the United States")
+POL_data_2012 <- POL_data_2012 %>% filter(Contest == "President of the United States")
+SAR_data_2012 <- SAR_data_2012 %>% filter(Contest == "President of the United States")
+SEM_data_2012 <- SEM_data_2012 %>% filter(Contest == "President of the United States")
+STL_data_2012 <- STL_data_2012 %>% filter(Contest == "President of the United States")
+SUM_data_2012 <- SUM_data_2012 %>% filter(Contest == "President of the United States")
+VOL_data_2012 <- VOL_data_2012 %>% filter(Contest == "President of the United States")
+
+
+## 2016 General Data
+dir = "/Users/mfigaro/Documents/STA 5104 Project/precinctlevelelectionresults2016gen"
+setwd(dir)
+
+# Alachua
+ALA_data_2016 <- read_tsv("ALA_PctResults20161108.txt",col_names=FALSE)
+colnames(ALA_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Brevard
+BRE_data_2016 <- read_tsv("BRE_PctResults20161108.txt",col_names=FALSE)
+colnames(BRE_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Broward
+BRO_data_2016 <- read_tsv("BRO_PctResults20161108.txt",col_names=FALSE)
+colnames(BRO_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Collier
+CLL_data_2016 <- read_tsv("CLL_PctResults20161108.txt",col_names=FALSE)
+colnames(CLL_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Miami-Dade
+DAD_data_2016 <- read_tsv("DAD_PctResults20161108.txt",col_names=FALSE)
+colnames(DAD_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Duval
+DUV_data_2016 <- read_tsv("DUV_PctResults20161108.txt",col_names=FALSE)
+colnames(DUV_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Flagler
+FLA_data_2016 <- read_tsv("FLA_PctResults20161108.txt",col_names=FALSE)
+colnames(FLA_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Hillsborough
+HIL_data_2016 <- read_tsv("HIL_PctResults20161108.txt",col_names=FALSE)
+colnames(HIL_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Indian River
+IND_data_2016 <- read_tsv("IND_PctResults20161108.txt",col_names=FALSE)
+colnames(IND_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Lake
+LAK_data_2016 <- read_tsv("LAK_PctResults20161108.txt",col_names=FALSE)
+colnames(LAK_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Lee
+LEE_data_2016 <- read_tsv("LEE_PctResults20161108.txt",col_names=FALSE)
+colnames(LEE_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Leon
+LEO_data_2016 <- read_tsv("LEO_PctResults20161108.txt",col_names=FALSE)
+colnames(LEO_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Manatee
+MAN_data_2016 <- read_tsv("MAN_PctResults20161108.txt",col_names=FALSE)
+colnames(MAN_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Orange
+ORA_data_2016 <- read_tsv("ORA_PctResults20161108.txt",col_names=FALSE)
+colnames(ORA_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Osceola
+OSC_data_2016 <- read_tsv("OSC_PctResults20161108.txt",col_names=FALSE)
+colnames(OSC_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Pinellas
+PIN_data_2016 <- read_tsv("PIN_PctResults20161108.txt",col_names=FALSE)
+colnames(PIN_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Polk
+POL_data_2016 <- read_tsv("POL_PctResults20161108.txt",col_names=FALSE)
+colnames(POL_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Sarasota
+SAR_data_2016 <- read_tsv("SAR_PctResults20161108.txt",col_names=FALSE)
+colnames(SAR_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+# Seminole
+SEM_data_2016 <- read_tsv("SEM_PctResults20161108.txt",col_names=FALSE)
+colnames(SEM_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+# St. Lucie
+STL_data_2016 <- read_tsv("STL_PctResults20161108.txt",col_names=FALSE)
+colnames(STL_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+# Sumter
+SUM_data_2016 <- read_tsv("SUM_PctResults20161108.txt",col_names=FALSE)
+colnames(SUM_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+# Volusia
+VOL_data_2016 <- read_tsv("VOL_PctResults20161108.txt",col_names=FALSE)
+colnames(VOL_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+# Pasco
+PAS_data_2016 <- read_tsv("PAS_PctResults20161108.txt",col_names=FALSE)
+colnames(PAS_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+# Marion
+MRN_data_2016 <- read_tsv("MRN_PctResults20161108.txt",col_names=FALSE)
+colnames(MRN_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+# Monroe
+MON_data_2016 <- read_tsv("MON_PctResults20161108.txt",col_names=FALSE)
+colnames(MON_data_2016) = c("Code","Name","ElectionNum","Date","ElectionName",
+                            "PrecinctID","PollLocation","TotRegVoters",
+                            "RegisteredREP","RegisteredDEM","RegisteredOTHER",
+                            "Contest","District","ContestCode","Issue",
+                            "CandidateParty","IDNumber","CandidateNum",
+                            "VoteTotal")
+
+ALA_data_2016 <- ALA_data_2016 %>% filter(Contest == "President of the United States")
+BRE_data_2016 <- BRE_data_2016 %>% filter(Contest == "President of the United States")
+BRO_data_2016 <- BRO_data_2016 %>% filter(Contest == "President of the United States")
+CLL_data_2016 <- CLL_data_2016 %>% filter(Contest == "President of the United States")
+DAD_data_2016 <- DAD_data_2016 %>% filter(Contest == "President of the United States")
+DUV_data_2016 <- DUV_data_2016 %>% filter(Contest == "President of the United States")
+FLA_data_2016 <- FLA_data_2016 %>% filter(Contest == "President of the United States")
+HIL_data_2016 <- HIL_data_2016 %>% filter(Contest == "President of the United States")
+IND_data_2016 <- IND_data_2016 %>% filter(Contest == "President of the United States")
+LAK_data_2016 <- LAK_data_2016 %>% filter(Contest == "President of the United States")
+LEE_data_2016 <- LEE_data_2016 %>% filter(Contest == "President of the United States")
+LEO_data_2016 <- LEO_data_2016 %>% filter(Contest == "President of the United States")
+MAN_data_2016 <- MAN_data_2016 %>% filter(Contest == "President of the United States")
+MON_data_2016 <- MON_data_2016 %>% filter(Contest == "President of the United States")
+MRN_data_2016 <- MRN_data_2016 %>% filter(Contest == "President of the United States")
+ORA_data_2016 <- ORA_data_2016 %>% filter(Contest == "President of the United States")
+OSC_data_2016 <- OSC_data_2016 %>% filter(Contest == "President of the United States")
+PAS_data_2016 <- PAS_data_2016 %>% filter(Contest == "President of the United States")
+PIN_data_2016 <- PIN_data_2016 %>% filter(Contest == "President of the United States")
+POL_data_2016 <- POL_data_2016 %>% filter(Contest == "President of the United States")
+SAR_data_2016 <- SAR_data_2016 %>% filter(Contest == "President of the United States")
+SEM_data_2016 <- SEM_data_2016 %>% filter(Contest == "PRESIDENT OF THE UNITED STATES")
+STL_data_2016 <- STL_data_2016 %>% filter(Contest == "President of the United States")
+SUM_data_2016 <- SUM_data_2016 %>% filter(Contest == "President of the United States")
+VOL_data_2016 <- VOL_data_2016 %>% filter(Contest == "President of the United States")
+
+# Create frame for bar graph
+VoteTotal_data_2012 <- c(sum(ALA_data_2012$VoteTotal), # Alachua
+                         sum(BRE_data_2012$VoteTotal), # Brevard
+                         sum(BRO_data_2012$VoteTotal), # Broward
+                         sum(CLL_data_2012$VoteTotal), # Collier
+                         sum(DAD_data_2012$VoteTotal), # Miami-Dade
+                         sum(DUV_data_2012$VoteTotal), # Duval
+                         sum(FLA_data_2012$VoteTotal), # Flagler
+                         sum(HIL_data_2012$VoteTotal), # Hillsborough
+                         sum(IND_data_2012$VoteTotal), # Indian River
+                         sum(LAK_data_2012$VoteTotal), # Lake
+                         sum(LEE_data_2012$VoteTotal), # Lee
+                         sum(LEO_data_2012$VoteTotal), # Leon
+                         sum(MAN_data_2012$VoteTotal), # Manatee
+                         sum(MON_data_2012$VoteTotal), # Monroe
+                         sum(MRN_data_2012$VoteTotal), # Marion
+                         sum(ORA_data_2012$VoteTotal), # Orange
+                         sum(OSC_data_2012$VoteTotal), # Osceola
+                         sum(PAS_data_2012$VoteTotal), # Pasco
+                         sum(PIN_data_2012$VoteTotal), # Pinellas
+                         sum(POL_data_2012$VoteTotal), # Polk
+                         sum(SAR_data_2012$VoteTotal), # Sarasota
+                         sum(SEM_data_2012$VoteTotal), # Seminole
+                         sum(STL_data_2012$VoteTotal), # St. Lucie
+                         sum(SUM_data_2012$VoteTotal), # Sumter
+                         sum(VOL_data_2012$VoteTotal)) # Volusia
+
+# County Names vector
+County_Names <- c("Alachua", "Brevard", "Broward", "Collier","Miami-Dade",
+                  "Duval","Flagler","Hillsborough","Indian River","Lake",
+                  "Lee","Leon","Manatee","Monroe","Marion","Orange","Osceola",
+                  "Paco","Pinellas","Polk","Sarasota","Seminole",
+                  "St. Lucie","Sumter","Volusia")
+
+## Votes for each candidate
+
+## 2012
+# Republican Votes (Romney / Ryan)
+ALA_REPVotes_2012 <- ALA_data_2012 %>% filter(Issue == "Romney / Ryan")
+BRE_REPVotes_2012 <- BRE_data_2012 %>% filter(Issue == "Romney / Ryan")
+BRO_REPVotes_2012 <- BRO_data_2012 %>% filter(Issue == "Romney / Ryan")
+CLL_REPVotes_2012 <- CLL_data_2012 %>% filter(Issue == "Romney / Ryan")
+DAD_REPVotes_2012 <- DAD_data_2012 %>% filter(Issue == "Romney / Ryan")
+DUV_REPVotes_2012 <- DUV_data_2012 %>% filter(Issue == "Romney / Ryan")
+FLA_REPVotes_2012 <- FLA_data_2012 %>% filter(Issue == "Romney / Ryan")
+HIL_REPVotes_2012 <- HIL_data_2012 %>% filter(Issue == "Romney / Ryan")
+IND_REPVotes_2012 <- IND_data_2012 %>% filter(Issue == "Romney / Ryan")
+LAK_REPVotes_2012 <- LAK_data_2012 %>% filter(Issue == "Romney / Ryan")
+LEE_REPVotes_2012 <- LEE_data_2012 %>% filter(Issue == "Romney / Ryan")
+LEO_REPVotes_2012 <- LEO_data_2012 %>% filter(Issue == "Romney / Ryan")
+MAN_REPVotes_2012 <- MAN_data_2012 %>% filter(Issue == "Romney / Ryan")
+MON_REPVotes_2012 <- MON_data_2012 %>% filter(Issue == "Romney / Ryan")
+MRN_REPVotes_2012 <- MRN_data_2012 %>% filter(Issue == "Romney / Ryan")
+ORA_REPVotes_2012 <- ORA_data_2012 %>% filter(Issue == "Romney / Ryan")
+OSC_REPVotes_2012 <- OSC_data_2012 %>% filter(Issue == "Romney / Ryan")
+PAS_REPVotes_2012 <- PAS_data_2012 %>% filter(Issue == "Romney / Ryan")
+PIN_REPVotes_2012 <- PIN_data_2012 %>% filter(Issue == "Romney / Ryan")
+POL_REPVotes_2012 <- POL_data_2012 %>% filter(Issue == "Romney / Ryan")
+SAR_REPVotes_2012 <- SAR_data_2012 %>% filter(Issue == "Romney / Ryan")
+SEM_REPVotes_2012 <- SEM_data_2012 %>% filter(Issue == "Romney / Ryan")
+STL_REPVotes_2012 <- STL_data_2012 %>% filter(Issue == "Romney / Ryan")
+SUM_REPVotes_2012 <- SUM_data_2012 %>% filter(Issue == "Romney / Ryan")
+VOL_REPVotes_2012 <- VOL_data_2012 %>% filter(Issue == "Romney / Ryan")
+
+REPVotes_2012 <- c(sum(ALA_REPVotes_2012$VoteTotal), # Alachua
+                         sum(BRE_REPVotes_2012$VoteTotal), # Brevard
+                         sum(BRO_REPVotes_2012$VoteTotal), # Broward
+                         sum(CLL_REPVotes_2012$VoteTotal), # Collier
+                         sum(DAD_REPVotes_2012$VoteTotal), # Miami-Dade
+                         sum(DUV_REPVotes_2012$VoteTotal), # Duval
+                         sum(FLA_REPVotes_2012$VoteTotal), # Flagler
+                         sum(HIL_REPVotes_2012$VoteTotal), # Hillsborough
+                         sum(IND_REPVotes_2012$VoteTotal), # Indian River
+                         sum(LAK_REPVotes_2012$VoteTotal), # Lake
+                         sum(LEE_REPVotes_2012$VoteTotal), # Lee
+                         sum(LEO_REPVotes_2012$VoteTotal), # Leon
+                         sum(MAN_REPVotes_2012$VoteTotal), # Manatee
+                         sum(MON_REPVotes_2012$VoteTotal), # Monroe
+                         sum(MRN_REPVotes_2012$VoteTotal), # Marion
+                         sum(ORA_REPVotes_2012$VoteTotal), # Orange
+                         sum(OSC_REPVotes_2012$VoteTotal), # Osceola
+                         sum(PAS_REPVotes_2012$VoteTotal), # Pasco
+                         sum(PIN_REPVotes_2012$VoteTotal), # Pinellas
+                         sum(POL_REPVotes_2012$VoteTotal), # Polk
+                         sum(SAR_REPVotes_2012$VoteTotal), # Sarasota
+                         sum(SEM_REPVotes_2012$VoteTotal), # Seminole
+                         sum(STL_REPVotes_2012$VoteTotal), # St. Lucie
+                         sum(SUM_REPVotes_2012$VoteTotal), # Sumter
+                         sum(VOL_REPVotes_2012$VoteTotal)) # Volusia
+
+
+# Democratic Candidate Votes (Obama / Biden)
+ALA_DEMVotes_2012 <- ALA_data_2012 %>% filter(Issue == "Obama / Biden")
+BRE_DEMVotes_2012 <- BRE_data_2012 %>% filter(Issue == "Obama / Biden")
+BRO_DEMVotes_2012 <- BRO_data_2012 %>% filter(Issue == "Obama / Biden")
+CLL_DEMVotes_2012 <- CLL_data_2012 %>% filter(Issue == "Obama / Biden")
+DAD_DEMVotes_2012 <- DAD_data_2012 %>% filter(Issue == "Obama / Biden")
+DUV_DEMVotes_2012 <- DUV_data_2012 %>% filter(Issue == "Obama / Biden")
+FLA_DEMVotes_2012 <- FLA_data_2012 %>% filter(Issue == "Obama / Biden")
+HIL_DEMVotes_2012 <- HIL_data_2012 %>% filter(Issue == "Obama / Biden")
+IND_DEMVotes_2012 <- IND_data_2012 %>% filter(Issue == "Obama / Biden")
+LAK_DEMVotes_2012 <- LAK_data_2012 %>% filter(Issue == "Obama / Biden")
+LEE_DEMVotes_2012 <- LEE_data_2012 %>% filter(Issue == "Obama / Biden")
+LEO_DEMVotes_2012 <- LEO_data_2012 %>% filter(Issue == "Obama / Biden")
+MAN_DEMVotes_2012 <- MAN_data_2012 %>% filter(Issue == "Obama / Biden")
+MON_DEMVotes_2012 <- MON_data_2012 %>% filter(Issue == "Obama / Biden")
+MRN_DEMVotes_2012 <- MRN_data_2012 %>% filter(Issue == "Obama / Biden")
+ORA_DEMVotes_2012 <- ORA_data_2012 %>% filter(Issue == "Obama / Biden")
+OSC_DEMVotes_2012 <- OSC_data_2012 %>% filter(Issue == "Obama / Biden")
+PAS_DEMVotes_2012 <- PAS_data_2012 %>% filter(Issue == "Obama / Biden")
+PIN_DEMVotes_2012 <- PIN_data_2012 %>% filter(Issue == "Obama / Biden")
+POL_DEMVotes_2012 <- POL_data_2012 %>% filter(Issue == "Obama / Biden")
+SAR_DEMVotes_2012 <- SAR_data_2012 %>% filter(Issue == "Obama / Biden")
+SEM_DEMVotes_2012 <- SEM_data_2012 %>% filter(Issue == "Obama / Biden")
+STL_DEMVotes_2012 <- STL_data_2012 %>% filter(Issue == "Obama / Biden")
+SUM_DEMVotes_2012 <- SUM_data_2012 %>% filter(Issue == "Obama / Biden")
+VOL_DEMVotes_2012 <- VOL_data_2012 %>% filter(Issue == "Obama / Biden")
+
+DEMVotes_2012 <- c(sum(ALA_DEMVotes_2012$VoteTotal), # Alachua
+                         sum(BRE_DEMVotes_2012$VoteTotal), # Brevard
+                         sum(BRO_DEMVotes_2012$VoteTotal), # Broward
+                         sum(CLL_DEMVotes_2012$VoteTotal), # Collier
+                         sum(DAD_DEMVotes_2012$VoteTotal), # Miami-Dade
+                         sum(DUV_DEMVotes_2012$VoteTotal), # Duval
+                         sum(FLA_DEMVotes_2012$VoteTotal), # Flagler
+                         sum(HIL_DEMVotes_2012$VoteTotal), # Hillsborough
+                         sum(IND_DEMVotes_2012$VoteTotal), # Indian River
+                         sum(LAK_DEMVotes_2012$VoteTotal), # Lake
+                         sum(LEE_DEMVotes_2012$VoteTotal), # Lee
+                         sum(LEO_DEMVotes_2012$VoteTotal), # Leon
+                         sum(MAN_DEMVotes_2012$VoteTotal), # Manatee
+                         sum(MON_DEMVotes_2012$VoteTotal), # Monroe
+                         sum(MRN_DEMVotes_2012$VoteTotal), # Marion
+                         sum(ORA_DEMVotes_2012$VoteTotal), # Orange
+                         sum(OSC_DEMVotes_2012$VoteTotal), # Osceola
+                         sum(PAS_DEMVotes_2012$VoteTotal), # Pasco
+                         sum(PIN_DEMVotes_2012$VoteTotal), # Pinellas
+                         sum(POL_DEMVotes_2012$VoteTotal), # Polk
+                         sum(SAR_DEMVotes_2012$VoteTotal), # Sarasota
+                         sum(SEM_DEMVotes_2012$VoteTotal), # Seminole
+                         sum(STL_DEMVotes_2012$VoteTotal), # St. Lucie
+                         sum(SUM_DEMVotes_2012$VoteTotal), # Sumter
+                         sum(VOL_DEMVotes_2012$VoteTotal)) # Volusia
+
+
+## 2016
+VoteTotal_data_2016 <- c(sum(ALA_data_2016$VoteTotal), # Alachua
+                         sum(BRE_data_2016$VoteTotal), # Brevard
+                         sum(BRO_data_2016$VoteTotal), # Broward
+                         sum(CLL_data_2016$VoteTotal), # Collier
+                         sum(DAD_data_2016$VoteTotal), # Miami-Dade
+                         sum(DUV_data_2016$VoteTotal), # Duval
+                         sum(FLA_data_2016$VoteTotal), # Flagler
+                         sum(HIL_data_2016$VoteTotal), # Hillsborough
+                         sum(IND_data_2016$VoteTotal), # Indian River
+                         sum(LAK_data_2016$VoteTotal), # Lake
+                         sum(LEE_data_2016$VoteTotal), # Lee
+                         sum(LEO_data_2016$VoteTotal), # Leon
+                         sum(MAN_data_2016$VoteTotal), # Manatee
+                         sum(MON_data_2016$VoteTotal), # Monroe
+                         sum(MRN_data_2016$VoteTotal), # Marion
+                         sum(ORA_data_2016$VoteTotal), # Orange
+                         sum(OSC_data_2016$VoteTotal), # Osceola
+                         sum(PAS_data_2016$VoteTotal), # Pasco
+                         sum(PIN_data_2016$VoteTotal), # Pinellas
+                         sum(POL_data_2016$VoteTotal), # Polk
+                         sum(SAR_data_2016$VoteTotal), # Sarasota
+                         sum(SEM_data_2016$VoteTotal), # Seminole
+                         sum(STL_data_2016$VoteTotal), # St. Lucie
+                         sum(SUM_data_2016$VoteTotal), # Sumter
+                         sum(VOL_data_2016$VoteTotal)) # Volusia
+
+## Votes for each candidate
+
+# Republican Votes (Trump / Pence)
+ALA_REPVotes_2016 <- ALA_data_2016 %>% filter(Issue == "Trump / Pence")
+BRE_REPVotes_2016 <- BRE_data_2016 %>% filter(Issue == "Trump / Pence")
+BRO_REPVotes_2016 <- BRO_data_2016 %>% filter(Issue == "Trump / Pence")
+CLL_REPVotes_2016 <- CLL_data_2016 %>% filter(Issue == "Trump / Pence")
+DAD_REPVotes_2016 <- DAD_data_2016 %>% filter(Issue == "Trump / Pence")
+DUV_REPVotes_2016 <- DUV_data_2016 %>% filter(Issue == "Trump / Pence")
+FLA_REPVotes_2016 <- FLA_data_2016 %>% filter(Issue == "Trump / Pence")
+HIL_REPVotes_2016 <- HIL_data_2016 %>% filter(Issue == "Trump / Pence")
+IND_REPVotes_2016 <- IND_data_2016 %>% filter(Issue == "Trump / Pence")
+LAK_REPVotes_2016 <- LAK_data_2016 %>% filter(Issue == "Trump / Pence")
+LEE_REPVotes_2016 <- LEE_data_2016 %>% filter(Issue == "Trump / Pence")
+LEO_REPVotes_2016 <- LEO_data_2016 %>% filter(Issue == "Trump / Pence")
+MAN_REPVotes_2016 <- MAN_data_2016 %>% filter(Issue == "Trump / Pence")
+MON_REPVotes_2016 <- MON_data_2016 %>% filter(Issue == "Trump / Pence")
+MRN_REPVotes_2016 <- MRN_data_2016 %>% filter(Issue == "Trump / Pence")
+ORA_REPVotes_2016 <- ORA_data_2016 %>% filter(Issue == "Trump / Pence")
+OSC_REPVotes_2016 <- OSC_data_2016 %>% filter(Issue == "Trump / Pence")
+PAS_REPVotes_2016 <- PAS_data_2016 %>% filter(Issue == "Trump / Pence")
+PIN_REPVotes_2016 <- PIN_data_2016 %>% filter(Issue == "Trump / Pence")
+POL_REPVotes_2016 <- POL_data_2016 %>% filter(Issue == "Trump / Pence")
+SAR_REPVotes_2016 <- SAR_data_2016 %>% filter(Issue == "Trump / Pence")
+SEM_REPVotes_2016 <- SEM_data_2016 %>% filter(Issue == "Donald J. Trump")
+STL_REPVotes_2016 <- STL_data_2016 %>% filter(Issue == "Trump / Pence")
+SUM_REPVotes_2016 <- SUM_data_2016 %>% filter(Issue == "Trump / Pence")
+VOL_REPVotes_2016 <- VOL_data_2016 %>% filter(Issue == "Trump / Pence")
+
+REPVotes_2016 <- c(sum(ALA_REPVotes_2016$VoteTotal), # Alachua
+                         sum(BRE_REPVotes_2016$VoteTotal), # Brevard
+                         sum(BRO_REPVotes_2016$VoteTotal), # Broward
+                         sum(CLL_REPVotes_2016$VoteTotal), # Collier
+                         sum(DAD_REPVotes_2016$VoteTotal), # Miami-Dade
+                         sum(DUV_REPVotes_2016$VoteTotal), # Duval
+                         sum(FLA_REPVotes_2016$VoteTotal), # Flagler
+                         sum(HIL_REPVotes_2016$VoteTotal), # Hillsborough
+                         sum(IND_REPVotes_2016$VoteTotal), # Indian River
+                         sum(LAK_REPVotes_2016$VoteTotal), # Lake
+                         sum(LEE_REPVotes_2016$VoteTotal), # Lee
+                         sum(LEO_REPVotes_2016$VoteTotal), # Leon
+                         sum(MAN_REPVotes_2016$VoteTotal), # Manatee
+                         sum(MON_REPVotes_2016$VoteTotal), # Monroe
+                         sum(MRN_REPVotes_2016$VoteTotal), # Marion
+                         sum(ORA_REPVotes_2016$VoteTotal), # Orange
+                         sum(OSC_REPVotes_2016$VoteTotal), # Osceola
+                         sum(PAS_REPVotes_2016$VoteTotal), # Pasco
+                         sum(PIN_REPVotes_2016$VoteTotal), # Pinellas
+                         sum(POL_REPVotes_2016$VoteTotal), # Polk
+                         sum(SAR_REPVotes_2016$VoteTotal), # Sarasota
+                         sum(SEM_REPVotes_2016$VoteTotal), # Seminole
+                         sum(STL_REPVotes_2016$VoteTotal), # St. Lucie
+                         sum(SUM_REPVotes_2016$VoteTotal), # Sumter
+                         sum(VOL_REPVotes_2016$VoteTotal)) # Volusia
+
+# Democratic Candidate Votes (Clinton / Kaine)
+ALA_DEMVotes_2016 <- ALA_data_2016 %>% filter(Issue == "Clinton / Kaine")
+BRE_DEMVotes_2016 <- BRE_data_2016 %>% filter(Issue == "Clinton / Kaine")
+BRO_DEMVotes_2016 <- BRO_data_2016 %>% filter(Issue == "Clinton / Kaine")
+CLL_DEMVotes_2016 <- CLL_data_2016 %>% filter(Issue == "Clinton / Kaine")
+DAD_DEMVotes_2016 <- DAD_data_2016 %>% filter(Issue == "Clinton / Kaine")
+DUV_DEMVotes_2016 <- DUV_data_2016 %>% filter(Issue == "Clinton / Kaine")
+FLA_DEMVotes_2016 <- FLA_data_2016 %>% filter(Issue == "Clinton / Kaine")
+HIL_DEMVotes_2016 <- HIL_data_2016 %>% filter(Issue == "Clinton / Kaine")
+IND_DEMVotes_2016 <- IND_data_2016 %>% filter(Issue == "Clinton / Kaine")
+LAK_DEMVotes_2016 <- LAK_data_2016 %>% filter(Issue == "Clinton / Kaine")
+LEE_DEMVotes_2016 <- LEE_data_2016 %>% filter(Issue == "Clinton / Kaine")
+LEO_DEMVotes_2016 <- LEO_data_2016 %>% filter(Issue == "Clinton / Kaine")
+MAN_DEMVotes_2016 <- MAN_data_2016 %>% filter(Issue == "Clinton / Kaine")
+MON_DEMVotes_2016 <- MON_data_2016 %>% filter(Issue == "Clinton / Kaine")
+MRN_DEMVotes_2016 <- MRN_data_2016 %>% filter(Issue == "Clinton / Kaine")
+ORA_DEMVotes_2016 <- ORA_data_2016 %>% filter(Issue == "Clinton / Kaine")
+OSC_DEMVotes_2016 <- OSC_data_2016 %>% filter(Issue == "Clinton / Kaine")
+PAS_DEMVotes_2016 <- PAS_data_2016 %>% filter(Issue == "Clinton / Kaine")
+PIN_DEMVotes_2016 <- PIN_data_2016 %>% filter(Issue == "Clinton / Kaine")
+POL_DEMVotes_2016 <- POL_data_2016 %>% filter(Issue == "Clinton / Kaine")
+SAR_DEMVotes_2016 <- SAR_data_2016 %>% filter(Issue == "Clinton / Kaine")
+SEM_DEMVotes_2016 <- SEM_data_2016 %>% filter(Issue == "Hillary R. Clinton")
+STL_DEMVotes_2016 <- STL_data_2016 %>% filter(Issue == "Clinton / Kaine")
+SUM_DEMVotes_2016 <- SUM_data_2016 %>% filter(Issue == "Clinton / Kaine")
+VOL_DEMVotes_2016 <- VOL_data_2016 %>% filter(Issue == "Clinton / Kaine")
+
+DEMVotes_2016 <- c(sum(ALA_DEMVotes_2016$VoteTotal), # Alachua
+                         sum(BRE_DEMVotes_2016$VoteTotal), # Brevard
+                         sum(BRO_DEMVotes_2016$VoteTotal), # Broward
+                         sum(CLL_DEMVotes_2016$VoteTotal), # Collier
+                         sum(DAD_DEMVotes_2016$VoteTotal), # Miami-Dade
+                         sum(DUV_DEMVotes_2016$VoteTotal), # Duval
+                         sum(FLA_DEMVotes_2016$VoteTotal), # Flagler
+                         sum(HIL_DEMVotes_2016$VoteTotal), # Hillsborough
+                         sum(IND_DEMVotes_2016$VoteTotal), # Indian River
+                         sum(LAK_DEMVotes_2016$VoteTotal), # Lake
+                         sum(LEE_DEMVotes_2016$VoteTotal), # Lee
+                         sum(LEO_DEMVotes_2016$VoteTotal), # Leon
+                         sum(MAN_DEMVotes_2016$VoteTotal), # Manatee
+                         sum(MON_DEMVotes_2016$VoteTotal), # Monroe
+                         sum(MRN_DEMVotes_2016$VoteTotal), # Marion
+                         sum(ORA_DEMVotes_2016$VoteTotal), # Orange
+                         sum(OSC_DEMVotes_2016$VoteTotal), # Osceola
+                         sum(PAS_DEMVotes_2016$VoteTotal), # Pasco
+                         sum(PIN_DEMVotes_2016$VoteTotal), # Pinellas
+                         sum(POL_DEMVotes_2016$VoteTotal), # Polk
+                         sum(SAR_DEMVotes_2016$VoteTotal), # Sarasota
+                         sum(SEM_DEMVotes_2016$VoteTotal), # Seminole
+                         sum(STL_DEMVotes_2016$VoteTotal), # St. Lucie
+                         sum(SUM_DEMVotes_2016$VoteTotal), # Sumter
+                         sum(VOL_DEMVotes_2016$VoteTotal)) # Volusia
+
+OtherVotes_2012 <- VoteTotal_data_2012-(REPVotes_2012 + DEMVotes_2012)
+OtherVotes_2016 <- VoteTotal_data_2016-(REPVotes_2016 + DEMVotes_2016)
+VoteData<-tibble(County_Names,VoteTotal_data_2012,REPVotes_2012,
+                 DEMVotes_2012,OtherVotes_2012,VoteTotal_data_2016,REPVotes_2016,
+                 DEMVotes_2016,OtherVotes_2016)
+
+## Demographics Data
+
+Pop_data <- data.frame(County = c("Alachua","Alachua","Alachua","Alachua",
+                                      "Alachua","Alachua","Alachua","Alachua",
+                                      "Alachua","Alachua","Alachua","Alachua",
+                                      "Alachua",
+                                      "Brevard","Brevard","Brevard","Brevard",
+                                      "Brevard","Brevard","Brevard","Brevard",
+                                      "Brevard","Brevard","Brevard","Brevard",
+                                      "Brevard",
+                                      "Broward","Broward","Broward","Broward",
+                                      "Broward","Broward","Broward","Broward",
+                                      "Broward","Broward","Broward","Broward",
+                                      "Broward",
+                                      "Collier","Collier","Collier","Collier",
+                                      "Collier","Collier","Collier","Collier",
+                                      "Collier","Collier","Collier","Collier",
+                                      "Collier",
+                                      "Miami-Dade","Miami-Dade","Miami-Dade",
+                                      "Miami-Dade","Miami-Dade","Miami-Dade",
+                                      "Miami-Dade","Miami-Dade","Miami-Dade",
+                                      "Miami-Dade","Miami-Dade","Miami-Dade",
+                                      "Miami-Dade",
+                                      "Duval","Duval","Duval","Duval","Duval",
+                                      "Duval","Duval","Duval","Duval","Duval",
+                                      "Duval","Duval","Duval",
+                                      "Flagler","Flagler","Flagler","Flagler",
+                                      "Flagler","Flagler","Flagler","Flagler",
+                                      "Flagler","Flagler","Flagler","Flagler",
+                                      "Flagler",
+                                      "Hillsborough","Hillsborough","Hillsborough",
+                                      "Hillsborough","Hillsborough","Hillsborough",
+                                      "Hillsborough","Hillsborough","Hillsborough",
+                                      "Hillsborough","Hillsborough","Hillsborough",
+                                      "Hillsborough",
+                                      "Indian River","Indian River","Indian River",
+                                      "Indian River","Indian River","Indian River",
+                                      "Indian River","Indian River","Indian River",
+                                      "Indian River","Indian River","Indian River",
+                                      "Indian River",
+                                      "Lake","Lake","Lake","Lake","Lake","Lake",
+                                      "Lake","Lake","Lake","Lake","Lake","Lake",
+                                      "Lake",
+                                      "Lee","Lee","Lee","Lee","Lee","Lee","Lee",
+                                      "Lee","Lee","Lee","Lee","Lee","Lee",
+                                      "Leon","Leon","Leon","Leon","Leon","Leon",
+                                      "Leon","Leon","Leon","Leon","Leon","Leon",
+                                      "Leon",
+                                      "Manatee","Manatee","Manatee","Manatee",
+                                      "Manatee","Manatee","Manatee","Manatee",
+                                      "Manatee","Manatee","Manatee","Manatee",
+                                      "Manatee",
+                                      "Monroe","Monroe","Monroe","Monroe",
+                                      "Monroe","Monroe","Monroe","Monroe",
+                                      "Monroe","Monroe","Monroe","Monroe",
+                                      "Monroe",
+                                      "Marion","Marion","Marion","Marion",
+                                      "Marion","Marion","Marion","Marion",
+                                      "Marion","Marion","Marion","Marion",
+                                      "Marion",
+                                      "Orange","Orange","Orange","Orange",
+                                      "Orange","Orange","Orange","Orange",
+                                      "Orange","Orange","Orange","Orange",
+                                      "Orange",
+                                      "Osceola","Osceola","Osceola","Osceola",
+                                      "Osceola","Osceola","Osceola","Osceola",
+                                      "Osceola","Osceola","Osceola","Osceola",
+                                      "Osceola",
+                                      "Pasco","Pasco","Pasco","Pasco",
+                                      "Pasco","Pasco","Pasco","Pasco",
+                                      "Pasco","Pasco","Pasco","Pasco",
+                                      "Pasco",
+                                      "Pinellas","Pinellas","Pinellas","Pinellas",
+                                      "Pinellas","Pinellas","Pinellas","Pinellas",
+                                      "Pinellas","Pinellas","Pinellas","Pinellas",
+                                      "Pinellas",
+                                      "Polk","Polk","Polk","Polk","Polk","Polk",
+                                      "Polk","Polk","Polk","Polk","Polk","Polk",
+                                      "Polk",
+                                      "Sarasota","Sarasota","Sarasota",
+                                      "Sarasota","Sarasota","Sarasota",
+                                      "Sarasota","Sarasota","Sarasota",
+                                      "Sarasota","Sarasota","Sarasota",
+                                      "Sarasota",
+                                      "Seminole","Seminole","Seminole",
+                                      "Seminole","Seminole","Seminole",
+                                      "Seminole","Seminole","Seminole",
+                                      "Seminole","Seminole","Seminole",
+                                      "Seminole",
+                                      "St. Lucie","St. Lucie","St. Lucie",
+                                      "St. Lucie","St. Lucie","St. Lucie",
+                                      "St. Lucie","St. Lucie","St. Lucie",
+                                      "St. Lucie","St. Lucie","St. Lucie",
+                                      "St. Lucie",
+                                      "Sumter","Sumter","Sumter","Sumter",
+                                      "Sumter","Sumter","Sumter","Sumter",
+                                      "Sumter","Sumter","Sumter","Sumter",
+                                      "Sumter",
+                                      "Volusia","Volusia","Volusia","Volusia",
+                                      "Volusia","Volusia","Volusia","Volusia",
+                                      "Volusia","Volusia","Volusia","Volusia",
+                                      "Volusia",
+                                      "Florida","Florida","Florida","Florida",
+                                      "Florida","Florida","Florida","Florida",
+                                      "Florida","Florida","Florida","Florida",
+                                      "Florida",
+                                      "USA","USA","USA","USA","USA","USA",
+                                      "USA","USA","USA","USA","USA","USA",
+                                      "USA"),
+                       Population=c("White alone %","Black %","Native American %",
+                                       "Asian %","Pacific Islander alone %",
+                                       "Two or more races %", "Latino %",
+                                       "White, not Hispanic or Latino %",
+                                       "Senior Citizens %","HS Grad %",
+                                       "College Grad %", "Population/sq. mi.",
+                                       "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop","White alone %","Black %","Native American %",
+                                      "Asian %","Pacific Islander alone %",
+                                      "Two or more races %", "Latino %",
+                                      "White, not Hispanic or Latino %",
+                                      "Senior Citizens %","HS Grad %",
+                                      "College Grad %", "Population/sq. mi.",
+                                      "Total Pop"),
+                        Percentage=c(0.699,0.206,0.004,0.062,0.001,0.029,0.105,
+                                    0.606,0.146,0.924,0.425,282.7,247336,
+                        0.832,0.108,0.005,0.026,0.001,0.028,0.109,
+                                    0.738,0.242,0.92,0.293,535,543372,
+                        0.631,0.302,0.004,0.039,0.001,0.023,0.311,
+                                    0.348,0.171,0.888,0.319,1444.9,1748146,
+                        0.893,0.073,0.005,0.016,0.001,0.012,0.286,
+                                    0.622,0.329,0.864,0.362,160.9,321522,
+                        0.79,0.177,0.003,0.016,0,0.013,0.694,0.129,
+                                    0.167,0.815,0.288,1315.5,2497993,
+                        0.606,0.308,0.005,0.05,0.001,0.03,0.105,0.52,
+                                  0.145,0.895,0.292,1133.9,864253,
+                       0.839,0.109,0.004,0.025,0.001,0.023,0.109,
+                                   0.744,0.312,0.92,0.244,197.1,95692,
+                       0.741,0.18,0.005,0.044,0.001,0.029,0.297,
+                                      0.477,0.145,0.884,0.327,1204.9,1229202,
+                       0.867,0.096,0.004,0.016,0,0.016,0.127,
+                                       0.75,0.338,0.887,0.283,274.5,138028,
+                      0.834,0.115,0.006,0.023,0.002,0.021,0.167,0.687,
+                                0.271,0.893,0.227,316.6,297047,
+                       0.868,0.091,0.005,0.018,0.001,0.017,0.225,0.662,
+                               0.292,0.88,0.278,788.7,618755,
+                       0.615,0.32,0.003,0.036,0.001,0.024,0.067,0.559,
+                                0.139,0.936,0.457,413.1,275483,
+                       0.86,0.093,0.005,0.023,0.001,0.019,0.169,0.706,
+                                 0.281,0.892,0.293,434.5,322879,
+                       0.892,0.071,0.005,0.015,0.001,0.018,0.253,
+                                  0.651,0.237,0.913,0.333,74.3,73090,
+                       0.821,0.135,0.005,0.017,0.001,0.02,0.141,
+                                  0.696,0.292,0.873,0.194,209.1,331299,
+                       0.68,0.228,0.006,0.057,0.002,0.028,0.327,0.394,
+                                  0.123,0.885,0.338,1268.5,1145957,
+                       0.791,0.141,0.008,0.029,0.002,0.029,0.558,
+                                   0.301,0.135,0.868,0.205,202.4,268685,
+                       0.875,0.067,0.005,0.028,0.001,0.024,0.165,0.727,
+                                 0.226,0.89,0.234,622.2,464705,
+                       0.825,0.111,0.004,0.036,0.001,0.023,0.102,
+                                  0.736,0.254,0.911,0.31,3347.5,916800,
+                       0.788,0.162,0.007,0.019,0.001,0.023,0.246,0.569,
+                                0.204,0.848,0.2,334.9,602073,
+                       0.915,0.047,0.003,0.018,0.001,0.016,0.096,
+                                  0.828,0.373,0.928,0.347,682.6,379433,
+                       0.786,0.131,0.005,0.05,0.001,0.029,0.225,0.589,
+                                  0.16,0.943,0.382,1367,422710,
+                       0.736,0.214,0.006,0.02,0.001,0.023,0.199,
+                                   0.559,0.247,0.861,0.203,485.7,277255,
+                       0.903,0.073,0.004,0.01,0.001,0.01,0.059,0.851,
+                                  0.582,0.916,0.311,170.8,93420,
+                       0.837,0.115,0.005,0.02,0.001,0.022,0.15,0.706,
+                                   0.249,0.9,0.236,449.2,494596,
+                       0.773,0.169,0.005,0.03,0.001,0.022,0.264,
+                                   0.532,0.209,0.88,0.292,350.6,18804564,
+                       0.763,0.134,0.013,0.059,0.002,0.028,0.185,0.601,
+                               0.165,0.877,0.315,87.4,308758105))
