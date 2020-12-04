@@ -4,6 +4,10 @@ title: "Personal Website"
 
 ## R Markdown
 
+```{r}
+plot(ElectionResults_2012)
+```
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
