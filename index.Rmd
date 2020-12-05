@@ -2,9 +2,9 @@
 title: "Personal Website"
 ---
 
-## R Markdown
+## Election Results
 
-# Data
+```{r include=FALSE}
 library("readr")
 dir = "/Users/mfigaro/Documents/STA 5104 Project/precinctlevelelectionresults2012gen (1)"
 setwd(dir)
@@ -1130,3 +1130,39 @@ Pop_data <- data.frame(County = c("Alachua","Alachua","Alachua","Alachua",
                                    0.532,0.209,0.88,0.292,350.6,18804564,
                        0.763,0.134,0.013,0.059,0.002,0.028,0.185,0.601,
                                0.165,0.877,0.315,87.4,308758105))
+VoteData
+VoteData_2012<-data.frame(VoteData$County_Names,VoteData$REPVotes_2012,
+                          VoteData$DEMVotes_2012,VoteData$OtherVotes_2012)
+master_votedata_2012<-VoteData_2012 %>%
+  gather("Party","Votes",-VoteData.County_Names)
+ElectionResults_2012<-ggplot(data=master_votedata_2012,aes(VoteData.County_Names,Votes))+
+  geom_col(aes(fill=as.factor(Party)),position="dodge")+coord_flip()+
+  scale_fill_manual(name="Candidate",values=c("blue3","yellow3","red3"),
+                    labels=c("Barack Obama and Joe Biden","Other",
+                             "Mitt Romney and Paul Ryan"))+
+  labs(x="County",y="Total Votes",
+       title="Votes by County: 2012 Presidential Election")
+
+
+VoteData_2016<-data.frame(VoteData$County_Names,VoteData$REPVotes_2016,
+                          VoteData$DEMVotes_2016,VoteData$OtherVotes_2016)
+master_votedata_2016<-VoteData_2016 %>%
+  gather("Party","Votes",-VoteData.County_Names)
+
+
+ElectionResults_2016<-ggplot(data=master_votedata_2016,aes(x=VoteData.County_Names,y=Votes))+
+  geom_col(aes(fill=as.factor(Party)),position="dodge")+coord_flip() +
+  scale_fill_manual(name="Candidate",values=c("red3","yellow3","blue3"),
+                    labels=c("Hillary Clinton and Tim Kaine",
+                             "Other",
+                             "Donald Trump and Mike Pence"))+
+  labs(x="County",y="Total Votes",
+       title="Votes by County: 2016 Presidential Election")
+```
+
+
+```{r echo=FALSE}
+plot(ElectionResults_2012)
+plot(ElectionResults_2016)
+```
+
