@@ -1,9 +1,39 @@
 ---
-title: "Personal Website"
+title: "Data Analysis of Voting in Florida"
 ---
 
-## Election Results
+<center>
 
+![](/Users/mfigaro/Documents/STA 5104 Project/voting-project/white_house.png)
+
+</center>
+
+#
+# 
+## Overview and Motivation
+#### For over 200 years, our country has been based on a government of the people, by the people, and for the people. Voting for our leaders is a concept at the core of our democracy, and candidates cannot win election without appealing to a broad base of voters. Every four years, presidential candidates descend on the state of Florida to gain as many votes as possible in one of the nation's largest swing states. Where to focus campaigning and who to target is often a difficult task for candidates and their campaigns. Florida is such a diverse state with many different demographics to pay attention to. Analyzing the behavior of voters in past elections can be vital in how candidates determine where they will focus their time and efforts. In this project, I analyzed two presidential elections, 2012 and 2016, in 25 of Florida's most populous and pivotal counties in general elections. The 2012 Presidential Election saw a democratic incumbent, Barack Obama, going up against Republican challenger, and governor of Massashusetts, Mitt Romney. The 2016 election saw businessman Donald Trump go up against former secretary of state and first lady, Hillary Clinton. How these candidates appealed to voters in Florida in many ways determined their success in their elections.
+#
+## Related Work
+#### Watching the 2020 Presidential Election unfold was what inspired me to do this project. Leading up to election night, and for days afterwards, news casters and analysts were discussing each condidate's appeal to minority voters, especially latino and black voters, elderly voters, and college educated voters. Americans are often very politically divided along these racial, eceonomic, and generational divides. How these demographics actually influenced voting motivated me to do this project.
+#
+## Initial Questions
+#### How do county demographics influence presidential elections? How does your race, age, economic standing, and education influence which candidate you will vote for? How much do individual condidates affect who people will vote for as opposed to their party affiliation? These are all questions I was seeking to answer through the course of this project. At first it was my intention to see how individual condidates influence party registration of voters, but I found actual votes to be a much more accurate depiction of how voters felt about candidates and their policies.  
+#
+## Data
+#### I chose the Florida counties I would be analyzing by selecting the 20 most populous counties in the state (Palm Beach was ommitted because the data did not read in correctly) and six counties that are considered important or are "swing counties" that tend to flip between red and blue from one election to the next. These swing counties were Flagler County, Indian River County, Leon County, Monroe County, Pasco County, and Sumter County. I used Precinct level Election results from the Florida Division of Elections Website. I read in csv files of voting data of 25 counties from the 2016 and 2020 elections, and filtered only the votes cast for President to obtain the total votes. I then separated these votes into three categories: Republican, Democratic, and Other for each election year. For Demographics data, I obtained data on the demographics breakdown of each county from the Census website and read that into R as well.
+#
+
+<center>
+
+![](/Users/mfigaro/Documents/STA 5104 Project/voting-project/florida_election_results.png)
+
+</center>
+
+## Exploratory Analysis
+#
+#### I knew I wanted to display the voting results from each county on a bar graph to display the difference in voting, and the demographics data in a scatter plot to show the differences between each county. I realized that it would be important to not only show the total votes in each county but also the percentage of votes cast for each ticket, since the counties varied in their total populations. This is why I used the table as well. The percentage of votes for each candidate are displayed on the vizualizations in the analysis section as well. The following graphs and tables display the results of my exploratory data anlysis
+#
+### Election Results by County
 ```{r include=FALSE}
 library("readr")
 dir = "/Users/mfigaro/Documents/STA 5104 Project/precinctlevelelectionresults2012gen (1)"
@@ -1130,7 +1160,7 @@ Pop_data <- data.frame(County = c("Alachua","Alachua","Alachua","Alachua",
                                    0.532,0.209,0.88,0.292,350.6,18804564,
                        0.763,0.134,0.013,0.059,0.002,0.028,0.185,0.601,
                                0.165,0.877,0.315,87.4,308758105))
-VoteData
+
 VoteData_2012<-data.frame(VoteData$County_Names,VoteData$REPVotes_2012,
                           VoteData$DEMVotes_2012,VoteData$OtherVotes_2012)
 master_votedata_2012<-VoteData_2012 %>%
@@ -1152,7 +1182,7 @@ master_votedata_2016<-VoteData_2016 %>%
 
 ElectionResults_2016<-ggplot(data=master_votedata_2016,aes(x=VoteData.County_Names,y=Votes))+
   geom_col(aes(fill=as.factor(Party)),position="dodge")+coord_flip() +
-  scale_fill_manual(name="Candidate",values=c("red3","yellow3","blue3"),
+  scale_fill_manual(name="Candidate",values=c("blue3","yellow3","red3"),
                     labels=c("Hillary Clinton and Tim Kaine",
                              "Other",
                              "Donald Trump and Mike Pence"))+
@@ -1166,3 +1196,181 @@ plot(ElectionResults_2012)
 plot(ElectionResults_2016)
 ```
 
+## Percentage Vote Data
+
+### 2012 Election
+```{r Percentage graph/table 2012, echo=FALSE}
+Total_Votes_display2012<-VoteData_2012%>%summarise(total=REPVotes_2012+
+                            DEMVotes_2012+
+                              OtherVotes_2012)
+Total_Votes_display2016<-VoteData_2016%>%summarise(total=REPVotes_2016+
+                            DEMVotes_2016+
+                              OtherVotes_2016)
+VoteData_2012_display<-VoteData_2012 %>% summarise(
+  County=County_Names,
+  Romney_Votes=(REPVotes_2012/Total_Votes_display2012)*100,
+  Obama_Votes=(DEMVotes_2012/Total_Votes_display2012)*100)
+
+VoteData_2012_display <- data.frame(VoteData_2012_display$County,VoteData_2012_display$Romney_Votes,VoteData_2012_display$Obama_Votes)
+
+VoteData_2016_display<-VoteData_2016 %>% summarise(
+  County=County_Names,
+  Trump_Votes=(REPVotes_2016/Total_Votes_display2016)*100,
+  Clinton_Votes=(DEMVotes_2016/Total_Votes_display2016)*100)
+
+VoteData_2016_display <- data.frame(VoteData_2016_display$County,VoteData_2016_display$Trump_Votes,VoteData_2016_display$Clinton_Votes)
+
+ggplot(VoteData_2012_display,aes(x=reorder(VoteData_2012_display.County,total)))+
+  geom_bar(aes(y=total),stat="identity")+
+  theme(axis.text.x=element_text(angle=60, hjust=1))+
+  labs(title="Percentage of Republican Votes in each County 2012",x="Counties",y="% REP Votes")
+
+ggplot(VoteData_2012_display,aes(x=reorder(VoteData_2012_display.County,total.1)))+
+  geom_bar(aes(y=total.1),stat="identity")+
+  theme(axis.text.x=element_text(angle=60, hjust=1))+
+  labs(title="Percentage of Democrat Votes in each County 2012",y="% DEM Votes",x="Counties")
+
+table2012 <- VoteData_2012_display %>% summarise("County" = VoteData_2012_display.County,"REP % (Trump)" = total,"DEM % (Clinton)" = total.1)
+knitr::kable(table2012,format="markdown")
+
+```
+
+#
+### 2016 Election
+```{r percentage graph/table 2016, echo=FALSE}
+ggplot(VoteData_2016_display,aes(x=reorder(VoteData_2016_display.County,total)))+
+  geom_bar(aes(y=total),stat="identity")+
+  theme(axis.text.x=element_text(angle=60, hjust=1))+
+  labs(title="Percentage of Republican Votes in each County 2016",y="% REP Votes",x="Counties")
+
+ggplot(VoteData_2016_display,aes(x=reorder(VoteData_2016_display.County,total.1)))+
+  geom_bar(aes(y=total.1),stat="identity")+
+  theme(axis.text.x=element_text(angle=60, hjust=1))+
+  labs(title="Percentage of Democrat Votes in each County 2016",y="% DEM Votes",x="Counties")
+
+table2016 <- VoteData_2016_display %>% summarise("County" = VoteData_2016_display.County,"REP % (Trump)" = total,"DEM % (Clinton)" = total.1)
+knitr::kable(table2016,format="markdown")
+```
+
+
+```{r include=FALSE}
+
+## Demographics data (Scatter plots)
+
+# White
+Pop_data_white <- Pop_data %>% filter(Population == 
+                                        "White, not Hispanic or Latino %")%>%
+  summarise(County,Population,"Percentage"=Percentage*100)
+avg_white <- Pop_data_white[27,3]
+Pop_data_white_county <- Pop_data_white[1:25,]
+
+demog_white_plot<-ggplot(data=Pop_data_white_county,aes(x=County,y=Percentage))+
+  geom_point()+geom_hline(yintercept=avg_white,color="red")+
+  theme(axis.text.x=element_text(angle=60, hjust=1))+
+  labs(title="Percentage of White People",
+       y="Percentage of Population (%)")
+
+# Black
+Pop_data_black <- Pop_data %>% filter(Population == 
+                                        "Black %")%>%
+  summarise(County,Population,"Percentage"=Percentage*100)
+avg_black <- Pop_data_black[27,3]
+Pop_data_black_county <- Pop_data_black[1:25,]
+
+demog_black_plot<-ggplot(data=Pop_data_black_county,aes(x=County,y=Percentage))+
+  geom_point()+geom_hline(yintercept=avg_black,color="red")+
+  theme(axis.text.x=element_text(angle=60, hjust=1))+
+  labs(y="Percentage of Population (%)",
+       title="Percentage of African Americans")
+
+# Native American
+Pop_data_na <- Pop_data %>% filter(Population == 
+                                        "Native American %")%>%
+  summarise(County,Population,"Percentage"=Percentage*100)
+avg_na <- Pop_data_na[27,3]
+Pop_data_na_county <- Pop_data_na[1:25,]
+
+demog_na_plot<-ggplot(data=Pop_data_na_county,aes(x=County,y=Percentage))+
+  geom_point()+geom_hline(yintercept=avg_na,color="red")+
+  theme(axis.text.x=element_text(angle=60, hjust=1))+
+  labs(y="Percentage of Population (%)",
+       title="Percentage of Native Americans")
+
+# Asian  
+Pop_data_asian <- Pop_data %>% filter(Population == 
+                                     "Asian %")%>%
+  summarise(County,Population,"Percentage"=Percentage*100)
+avg_asian <- Pop_data_asian[27,3]
+Pop_data_asian_county <- Pop_data_asian[1:25,]
+
+demog_asian_plot<-ggplot(data=Pop_data_asian_county,aes(x=County,y=Percentage))+
+  geom_point()+geom_hline(yintercept=avg_asian,color="red")+
+  theme(axis.text.x=element_text(angle=60, hjust=1))+
+  labs(y="Percentage of Population (%)",
+       title="Percentage of Asian People")
+
+# Pacific Islander
+Pop_data_pi <- Pop_data %>% filter(Population == 
+                                        "Pacific Islander alone %")%>%
+  summarise(County,Population,"Percentage"=Percentage*100)
+avg_pi <- Pop_data_pi[27,3]
+Pop_data_pi_county <- Pop_data_pi[1:25,]
+
+demog_pi_plot<-ggplot(data=Pop_data_pi_county,aes(x=County,y=Percentage))+
+  geom_point()+geom_hline(yintercept=avg_pi,color="red")+
+  theme(axis.text.x=element_text(angle=60, hjust=1))+
+  labs(y="Percentage of Population (%)",
+       title="Percentage of Pacific Islanders")
+
+# Latino
+Pop_data_latino <- Pop_data %>% filter(Population == 
+                                        "Latino %")%>%
+  summarise(County,Population,"Percentage"=Percentage*100)
+avg_latino <- Pop_data_latino[27,3]
+Pop_data_latino_county <- Pop_data_latino[1:25,]
+demog_latino_plot<-ggplot(data=Pop_data_latino_county,aes(x=County,y=Percentage))+
+  geom_point()+geom_hline(yintercept=avg_latino,color="red")+
+  theme(axis.text.x=element_text(angle=60, hjust=1))+
+  labs(y="Percentage of Population (%)",
+       title="Percentage of Latino People")
+
+# Senior Citizens
+Pop_data_sc <- Pop_data %>% filter(Population == 
+                                        "Senior Citizens %")%>%
+  summarise(County,Population,"Percentage"=Percentage*100)
+avg_sc <- Pop_data_sc[27,3]
+Pop_data_sc_county <- Pop_data_sc[1:25,]
+
+demog_sc_plot<-ggplot(data=Pop_data_sc_county,aes(x=County,y=Percentage))+
+  geom_point()+geom_hline(yintercept=avg_sc,color="red")+
+  theme(axis.text.x=element_text(angle=60, hjust=1))+
+  labs(y="Percentage of Population (%)",
+       title="Percentage of Senior Citizens")
+
+## College grads
+Pop_data_grad <- Pop_data %>% filter(Population == 
+                                        "College Grad %")%>%
+  summarise(County,Population,"Percentage"=Percentage*100)
+avg_grad <- Pop_data_grad[27,3]
+Pop_data_grad_county <- Pop_data_grad[1:25,]
+
+demog_grad_plot<-ggplot(data=Pop_data_grad_county,aes(x=County,y=Percentage))+
+  geom_point()+geom_hline(yintercept=avg_grad,color="red")+
+  theme(axis.text.x=element_text(angle=60, hjust=1))+
+  labs(y="Percentage of Population (%)",
+       title="Percentage of College Grads")
+```
+
+```{r include=FALSE}
+library(gridExtra)
+```
+
+#### The demographics data of each county is desplayed in the scatter plots below. The red line indicates the national average.
+```{r echo=FALSE}
+grid.arrange(demog_white_plot,demog_black_plot,demog_na_plot,
+             demog_asian_plot,ncol=2)
+grid.arrange(demog_pi_plot,demog_latino_plot,demog_sc_plot,demog_grad_plot,
+             ncol=2)
+```
+
+#### The main takeaways from this data are that Sarasota and Sumter had the highest percentages of white and elderly people. This is probably due to the fact that these counties are popular retirement locations for people from around the country. Duval, Broward, and Leon had the highest percentage of African-American residents. Duval and Broward are located near large cities: Jacksonville and Miami, respectively. Leon is a county with a historically large and vibrant African American population. Miami-Dade and Osceola had large latino communities. Alachua and Leon had a large population of college grads because of their major state universities. The largest Asian population is located in Alachua, the largest Native American population is located in Osceola and Polk, and Pacific Islander/Hawaiian populations are miniscule in Florida, but they are largest in Lake, Orange, and Osceola.
