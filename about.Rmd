@@ -15,6 +15,10 @@ $y = B0 + B1*x$
 #### To test whether the results were statistically significance I calculated the p-value of each linear correlation. Significance value = 0.05. If the p-value was less than the significance value then the results were statistically significant and there was a linear relationship between the variables. 
 
 #
+#### To test whether the results were statistically significance I calculated the p-value of each linear correlation. Significance value = 0.05. If the p-value was less than the significance value then the results were statistically significant and there was a linear relationship between the variables. 
+
+#
+
 ```{r Data Input and Manipulation,include=FALSE}
 ## Final Project Code
 
