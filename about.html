@@ -320,6 +320,7 @@ $(document).ready(function () {
 </div>
 <div id="section-1" class="section level1">
 <h1></h1>
+<p>####To test whether the results were statistically significance I calculated the p-value of each linear correlation. Significance value = 0.05. If the p-value was less than the significance value then the results were statistically significant and there was a linear relationship between the variables. #</p>
 <div id="linear-regression-of-white-population-data" class="section level2">
 <h2>Linear Regression of White Population Data</h2>
 </div>
@@ -335,6 +336,7 @@ $(document).ready(function () {
 <th>Election Ticket</th>
 <th>Regression Equation</th>
 <th>R-squared value</th>
+<th>P-value</th>
 </tr>
 </thead>
 <tbody>
@@ -342,27 +344,31 @@ $(document).ready(function () {
 <td>REP 2012 (Romney/Ryan)</td>
 <td>y = 0.391x + 26.337</td>
 <td>0.55731</td>
+<td>1.822e-05</td>
 </tr>
 <tr class="even">
 <td>DEM 2012 (Obama/Biden)</td>
 <td>y = -0.391x + 72.154</td>
 <td>0.570574</td>
+<td>1.27e-05</td>
 </tr>
 <tr class="odd">
 <td>REP 2016 (Trump/Pence)</td>
 <td>y = 0.494x + 20.037</td>
 <td>0.65351</td>
+<td>1.01e-06</td>
 </tr>
 <tr class="even">
 <td>DEM 2016 (Clinton/Kaine)</td>
 <td>y = -0.495x + 75.146</td>
 <td>0.68758</td>
+<td>3.02e-07</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="counties-with-larger-white-populations-favored-republican-tickets-more-and-favored-donald-trump-in-2016-much-more-than-mitt-romney-in-2012." class="section level4">
-<h4>Counties with larger white populations favored Republican tickets more, and favored Donald Trump in 2016 much more than Mitt Romney in 2012.</h4>
+<div id="counties-with-larger-white-populations-favored-republican-tickets-more-and-favored-donald-trump-in-2016-much-more-than-mitt-romney-in-2012.-these-results-are-statistically-significant-and-there-is-a-correlation-between-percentage-of-white-people-in-a-county-and-that-countys-voting." class="section level4">
+<h4>Counties with larger white populations favored Republican tickets more, and favored Donald Trump in 2016 much more than Mitt Romney in 2012. These results are statistically significant, and there is a correlation between percentage of white people in a county and that county’s voting.</h4>
 <p><img src="about_files/figure-html/unnamed-chunk-3-1.png" width="672" /><img src="about_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
 </div>
 <div id="linear-regression-of-black-population-data" class="section level2">
@@ -380,6 +386,7 @@ $(document).ready(function () {
 <th>Election Ticket</th>
 <th>Regression Equation</th>
 <th>R-squared value</th>
+<th>P-value</th>
 </tr>
 </thead>
 <tbody>
@@ -387,27 +394,31 @@ $(document).ready(function () {
 <td>REP 2012 (Romney/Ryan)</td>
 <td>y = -0.783x + 61.524</td>
 <td>0.46325</td>
+<td>0.0002</td>
 </tr>
 <tr class="even">
 <td>DEM 2012 (Obama/Biden)</td>
 <td>y = 0.784x + 36.936</td>
 <td>0.47609</td>
+<td>0.0001</td>
 </tr>
 <tr class="odd">
 <td>REP 2016 (Trump/Pence)</td>
 <td>y = -0.958x + 64.028</td>
 <td>0.51034</td>
+<td>6.04e-05</td>
 </tr>
 <tr class="even">
 <td>DEM 2016 (Clinton/Kaine)</td>
 <td>y = 0.948x + 31.236</td>
 <td>0.52304</td>
+<td>4.42e-05</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="counties-with-a-larger-black-population-favored-the-democratic-tickets-more-and-favored-clinton-in-2016-more-than-obama-in-2012." class="section level4">
-<h4>Counties with a larger black population favored the democratic tickets more, and favored Clinton in 2016 more than Obama in 2012.</h4>
+<div id="counties-with-a-larger-black-population-favored-the-democratic-tickets-more-and-favored-clinton-in-2016-more-than-obama-in-2012.there-is-a-statistically-significant-linear-correlation-between-percentage-of-black-people-in-a-county-and-percentage-of-democrat-and-republican-votes." class="section level4">
+<h4>Counties with a larger black population favored the democratic tickets more, and favored Clinton in 2016 more than Obama in 2012.There is a statistically significant linear correlation between percentage of black people in a county and percentage of democrat and republican votes.</h4>
 <p><img src="about_files/figure-html/unnamed-chunk-5-1.png" width="672" /><img src="about_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
 </div>
 </div>
@@ -425,6 +436,7 @@ $(document).ready(function () {
 <th>Party Ticket (2012 and 2016)</th>
 <th>Regression Equation</th>
 <th>R-squared value</th>
+<th>P-value</th>
 </tr>
 </thead>
 <tbody>
@@ -432,11 +444,13 @@ $(document).ready(function () {
 <td>REP</td>
 <td>y = 2.968x + 48.553</td>
 <td>0.0012981</td>
+<td>0.804</td>
 </tr>
 <tr class="even">
 <td>DEM</td>
 <td>y = -3.243x + 48.379</td>
 <td>0.001558</td>
+<td>0.786</td>
 </tr>
 </tbody>
 </table>
@@ -444,8 +458,8 @@ $(document).ready(function () {
 </div>
 <div id="section-5" class="section level1">
 <h1></h1>
-<div id="there-is-no-significant-correlation-between-percentage-of-native-americans-in-a-county-and-the-percentage-vote-for-each-candidate.-their-population-is-too-small-to-make-a-statistical-inference-based-on-it-1" class="section level4">
-<h4>There is no significant correlation between Percentage of Native Americans in a County and the percentage vote for each candidate. Their population is too small to make a statistical inference based on it</h4>
+<div id="there-is-no-statistically-significant-correlation-between-percentage-of-native-americans-in-a-county-and-the-percentage-vote-for-each-candidate." class="section level4">
+<h4>There is no statistically significant correlation between Percentage of Native Americans in a County and the percentage vote for each candidate.</h4>
 </div>
 </div>
 <div id="section-6" class="section level1">
@@ -462,6 +476,7 @@ $(document).ready(function () {
 <th>Party Ticket (2012 and 2016)</th>
 <th>Regression Equation</th>
 <th>R-squared value</th>
+<th>P-value</th>
 </tr>
 </thead>
 <tbody>
@@ -469,11 +484,13 @@ $(document).ready(function () {
 <td>REP</td>
 <td>y = -27.827x + 52.884</td>
 <td>0.016961</td>
+<td>0.367</td>
 </tr>
 <tr class="even">
 <td>DEM</td>
 <td>y = 24.488x + 44.262</td>
 <td>0.013209</td>
+<td>0.427</td>
 </tr>
 </tbody>
 </table>
@@ -481,8 +498,8 @@ $(document).ready(function () {
 </div>
 <div id="section-8" class="section level1">
 <h1></h1>
-<div id="there-is-no-significant-correlation-between-percentage-of-hawaiians-or-pacific-islanders-in-a-county-and-the-percentage-vote-for-each-candidate.-their-population-is-too-small-to-make-a-statistical-inference-based-on-it" class="section level4">
-<h4>There is no significant correlation between Percentage of Hawaiians or Pacific Islanders in a County and the percentage vote for each candidate. Their population is too small to make a statistical inference based on it</h4>
+<div id="there-is-no-statistically-significant-correlation-between-percentage-of-hawaiians-or-pacific-islanders-in-a-county-and-the-percentage-vote-for-each-candidate.-their-population-is-too-small-to-make-a-statistical-inference-based-on-it" class="section level4">
+<h4>There is no statistically significant correlation between Percentage of Hawaiians or Pacific Islanders in a County and the percentage vote for each candidate. Their population is too small to make a statistical inference based on it</h4>
 </div>
 </div>
 <div id="section-9" class="section level1">
@@ -503,6 +520,7 @@ $(document).ready(function () {
 <th>Election Ticket</th>
 <th>Regression Equation</th>
 <th>R-squared value</th>
+<th>P-value</th>
 </tr>
 </thead>
 <tbody>
@@ -510,21 +528,25 @@ $(document).ready(function () {
 <td>REP 2012 (Romney/Ryan)</td>
 <td>y = -3.284x + 59.393</td>
 <td>0.28008</td>
+<td>0.0065</td>
 </tr>
 <tr class="even">
 <td>DEM 2012 (Obama/Biden)</td>
 <td>y = 3.207x + 39.313</td>
 <td>0.27325</td>
+<td>0.0073</td>
 </tr>
 <tr class="odd">
 <td>REP 2016 (Trump/Pence)</td>
 <td>y = -4.518x + 62.839</td>
 <td>0.38962</td>
+<td>0.00085</td>
 </tr>
 <tr class="even">
 <td>DEM 2016 (Clinton/Kaine)</td>
 <td>y = 4.169x + 33.27</td>
 <td>0.347397</td>
+<td>0.00193</td>
 </tr>
 </tbody>
 </table>
@@ -541,6 +563,7 @@ $(document).ready(function () {
 <th>Election Ticket</th>
 <th>Regression Equation</th>
 <th>R-squared value</th>
+<th>P-value</th>
 </tr>
 </thead>
 <tbody>
@@ -548,21 +571,25 @@ $(document).ready(function () {
 <td>REP 2012 (Romney/Ryan)</td>
 <td>y = -0.288x + 56.128</td>
 <td>0.22838</td>
+<td>0.0157</td>
 </tr>
 <tr class="even">
 <td>DEM 2012 (Obama/Biden)</td>
 <td>y = 0.289x + 42.341</td>
 <td>0.234903</td>
+<td>0.0141</td>
 </tr>
 <tr class="odd">
 <td>REP 2016 (Trump/Pence)</td>
 <td>y = -0.370x + 57.780</td>
 <td>0.27620</td>
+<td>0.00698</td>
 </tr>
 <tr class="even">
 <td>DEM 2016 (Clinton/Kaine)</td>
 <td>y = 0.379x + 37.145</td>
 <td>0.30333</td>
+<td>0.00433</td>
 </tr>
 </tbody>
 </table>
@@ -570,8 +597,8 @@ $(document).ready(function () {
 </div>
 <div id="section-12" class="section level1">
 <h1></h1>
-<div id="counties-with-more-latino-residents-broke-more-strongly-for-clinton-in-2016-than-for-obama-in-2012-but-not-by-a-large-margin." class="section level4">
-<h4>Counties with more Latino residents broke more strongly for Clinton in 2016 than for Obama in 2012 but not by a large margin.</h4>
+<div id="counties-with-more-latino-residents-broke-more-strongly-for-clinton-in-2016-than-for-obama-in-2012-but-not-by-a-large-margin.-there-is-a-statistically-significant-linear-correlation-between-these-variables-in-both-elections." class="section level4">
+<h4>Counties with more Latino residents broke more strongly for Clinton in 2016 than for Obama in 2012 but not by a large margin. There is a statistically significant linear correlation between these variables in both elections.</h4>
 </div>
 </div>
 <div id="section-13" class="section level1">
@@ -590,6 +617,7 @@ $(document).ready(function () {
 <th>Election Ticket</th>
 <th>Regression Equation</th>
 <th>R-squared value</th>
+<th>P-value</th>
 </tr>
 </thead>
 <tbody>
@@ -597,29 +625,33 @@ $(document).ready(function () {
 <td>REP 2012 (Romney/Ryan)</td>
 <td>y = 0.678x + 33.584</td>
 <td>0.58837</td>
+<td>7.708e-06</td>
 </tr>
 <tr class="even">
 <td>DEM 2012 (Obama/Biden)</td>
 <td>y = -0.666x + 64.594</td>
 <td>0.57978</td>
+<td>9.838e-06</td>
 </tr>
 <tr class="odd">
 <td>REP 2016 (Trump/Pence)</td>
 <td>y = 0.810x + 30.325</td>
 <td>0.61653</td>
+<td>3.342e-06</td>
 </tr>
 <tr class="even">
 <td>DEM 2016 (Clinton/Kaine)</td>
 <td>y = -0.763x + 63.647</td>
 <td>0.57276</td>
+<td>1.197e-05</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div id="section-15" class="section level1">
 <h1></h1>
-<div id="the-regression-results-of-senior-citizen-voter-data-showed-that-the-strongest-correlation-between-votes-and-voters-occurred-in-the-2016-election.-also-elderly-voters-broke-much-harder-for-trump-in-2016-than-they-did-for-romney-in-2012-as-evidenced-by-the-stronger-and-significantly-more-positive-linear-correlation-in-2016." class="section level4">
-<h4>The Regression Results of Senior Citizen Voter Data showed that the strongest correlation between votes and voters occurred in the 2016 election. Also, elderly voters broke much harder for Trump in 2016 than they did for Romney in 2012, as evidenced by the stronger and significantly more positive linear correlation in 2016.</h4>
+<div id="the-regression-results-of-senior-citizen-voter-data-showed-that-the-strongest-correlation-between-votes-and-voters-occurred-in-the-2016-election.-also-elderly-voters-broke-much-harder-for-trump-in-2016-than-they-did-for-romney-in-2012-as-evidenced-by-the-stronger-and-significantly-more-positive-linear-correlation-in-2016.-there-is-a-statistically-significant-linear-correlation-between-these-variables." class="section level4">
+<h4>The Regression Results of Senior Citizen Voter Data showed that the strongest correlation between votes and voters occurred in the 2016 election. Also, elderly voters broke much harder for Trump in 2016 than they did for Romney in 2012, as evidenced by the stronger and significantly more positive linear correlation in 2016. There is a statistically significant linear correlation between these variables.</h4>
 <p><img src="about_files/figure-html/unnamed-chunk-14-1.png" width="672" /><img src="about_files/figure-html/unnamed-chunk-14-2.png" width="672" /></p>
 </div>
 <div id="linear-regression-of-college-graduate-population-data" class="section level2">
@@ -631,6 +663,7 @@ $(document).ready(function () {
 <th>Election Ticket</th>
 <th>Regression Equation</th>
 <th>R-squared value</th>
+<th>P-value</th>
 </tr>
 </thead>
 <tbody>
@@ -638,26 +671,30 @@ $(document).ready(function () {
 <td>REP 2012 (Romney/Ryan)</td>
 <td>y = -0.278x + 58.227</td>
 <td>0.04584</td>
+<td>0.304</td>
 </tr>
 <tr class="even">
 <td>DEM 2012 (Obama/Biden)</td>
 <td>y = 0.274x + 40.380</td>
 <td>0.045523</td>
+<td>0.0553</td>
 </tr>
 <tr class="odd">
 <td>REP 2016 (Trump/Pence)</td>
 <td>y = -0.587x + 67.290</td>
 <td>0.15058</td>
+<td>0.3058</td>
 </tr>
 <tr class="even">
 <td>DEM 2016 (Clinton/Kaine)</td>
 <td>y = 0.529x + 29.543</td>
 <td>0.12798</td>
+<td>0.079</td>
 </tr>
 </tbody>
 </table>
-<div id="the-regression-results-of-college-graduate-voter-data-showed-that-the-strongest-correlation-between-votes-and-voters-occurred-in-the-2016-election.-voters-also-broke-more-strongly-for-clinton-in-2016-than-they-did-for-obama-in-2012." class="section level4">
-<h4>The Regression Results of College Graduate Voter Data showed that the strongest correlation between votes and voters occurred in the 2016 election. Voters also broke more strongly for Clinton in 2016 than they did for Obama in 2012.</h4>
+<div id="the-regression-results-of-college-graduate-voter-data-showed-that-the-correlation-between-percentage-college-graguates-and-percentage-dem-and-rep-votes-was-not-statistically-significant." class="section level4">
+<h4>The Regression Results of College Graduate Voter Data showed that the correlation between percentage college graguates and percentage DEM and REP votes was not statistically significant.</h4>
 </div>
 </div>
 </div>
@@ -670,8 +707,8 @@ $(document).ready(function () {
 </div>
 <div id="section-17" class="section level1">
 <h1></h1>
-<p>The data found that there was a significant correlation between demographics data and voting. The deomgraphics data that had the most significant correlation with an increase in voting were Black Voters and Senior Citizen Voters. Both of these demographics also broke more strongly towards their favored parties in the 2016 elections. Counties with more senior citizens trended more heavily towards Donald Trump than Mitt Romney, and counties with black voters trended more heavily towards Hillary CLinton than Barack Obama. I deduced this because the slopes for the 2016 linear regression equations were larger, meaning the votes trended more heavily towards one party when that population demographic increased. This difference in data was likely due to the difference in candidates. Donald Trump was a candidate that appealed to conservative values with his motto “Make America Great Again.” These ideas are likely what appealed most to Elderly voters. Counties with black voters, despite the running of the first black president for reelection, appeared to favor Hillary CLinton more by percentage. This could be due to their mistrust of Donald Trump due to his many controversial and inflammatory comments, or innacurracies in the model that will be discussed later.</p>
-<p>Another surprising result of this model is the apparent lack of correlation between a county’s Latino population and how that county voted, despite how large the Latino population is in Florida. This is likely due to the fact that Latinos encompass a large variety of people from different countries and regions. The term “latinos” is a very general term that could encompass people from Mexico, Cuba, Puerto Rico, Central America, and South America. Attempting to predict how these people will vote is therefore quite difficult, and pollsters should redefine the term in the future. Also, the population of college graduates appeared to have a more significant correlation in the 2016 election than in 2012. The 2020 election was the first election that saw pollsters factoring college educated percentages of states and counties into their models, and this is because of the 2016 election. Donald Trump’s appeal to uneducated, working class voters was indeed effective. His ability to capitalize on Clinton’s inability to appeal to these voters may have been instrumental in him winning the election. However, this correlation could be due to the presence of more college educated voters in urban rather than rural counties. If I were to redo this project, I would include more rural Florida counties to observe how class and education influenced these elections.</p>
+<p>The data found that there was a significant correlation between demographics data and voting. The deomgraphics data that had the most significant correlation with an increase in voting were Black Voters and Senior Citizen Voters. Both of these demographics also broke more strongly towards their favored parties in the 2016 elections. Counties with more senior citizens trended more heavily towards Donald Trump than Mitt Romney, and counties with black voters trended more heavily towards Hillary Clinton than Barack Obama. I deduced this because the slopes for the 2016 linear regression equations were larger, meaning the votes trended more heavily towards one party when that population demographic increased. This difference in data was likely due to the difference in candidates. Donald Trump was a candidate that appealed to conservative values with his motto “Make America Great Again.” These ideas are likely what appealed most to Elderly voters. Counties with black voters, despite the running of the first black president for reelection, appeared to favor Hillary Clinton more by percentage. This could be due to their mistrust of Donald Trump due to his many controversial and inflammatory comments, or inacurracies in the model that will be discussed later.</p>
+<p>Another surprising result of this model is the apparent lack of correlation between a county’s Latino population and how that county voted, despite how large the Latino population is in Florida. This is likely due to the fact that Latinos encompass a large variety of people from different countries and regions. The term “latinos” is a very general term that could encompass people from Mexico, Cuba, Puerto Rico, Central America, and South America. Attempting to predict how these people will vote is therefore quite difficult, and pollsters should redefine the term in the future. Surprisingly, there was no statistically significant correlation between percentage college graduates in a county and how that county voted. This became an important distinction between Democratic and Republican voters in future elections, but this was not significant in the observed counties in Florida. If I were to redo this project, I would include more rural Florida counties to observe how class and education influenced these elections.</p>
 <p>Some of the weaknesses of this model include the number of counties. Including more counties would enable me to show a greater correlation between demographics and voting choice. Also, it is difficult to say which demographic had the greatest effect on the election’s outcome in each county. You could say the largest proportion had the greatest effect, but there are several factors that influence voting, including economic standing age, and population density. Just because a county like Miami-Dade and Broward may have a greater number of Latino and back residents than white residents, impoverished minority communities often experience a lower voter turnout than affluent white communities due to gaps in education, class, and population density. Urban, inner-city, residents of Florida’s largest cities can often experience very long wait times due to the large population density and limited polling places.</p>
 <p>Overall, this model had the expected results for each demographic based on typical polls and election results. However, it could have been built to show a more accurate depiction of the relationship between demographics and voting. Including more counties or more elections would have benefited the model greatly. This was a generally insightful and interesting project to develop, and this method of analyzing voters using the concepts of data anlysis and vizualization could be very helpful to pollsters and campaigns in the future. Lastly, the 2016 Election displayed stronger correlations in every case, along with voters from each demographic favoring the party they did in 2016 much more strongly. This tendency, for example, of counties with high percentages of white people to vote in higher numbers for the republican candidate in 2016, Donald Trump, portrays a significant divide developing in the American people, between people of different race, age, and economic standing. It is my hope that utilizing data techniques such as this model will notify candidates and parties of this growing divide, and that it will convince them not to worsen it by catering to their base, but to bring Americans together through bipartisan politics and cooperation.</p>
 <div id="sources" class="section level3">
