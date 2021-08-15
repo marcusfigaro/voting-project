@@ -9,9 +9,11 @@ title: "Analysis"
 $y = B0 + B1*x$
 
 #### I then found the Intercept, slope, and r-squared value of the regression line using the mean, sd, and cor functions in R. I then graphed the regression lines and used the equations to find if there was a positive, negative, or nonexistent correlation between the demographic data and the election data. This regression would also show if a demographic favored one of the candidates more in one of the elections than the other. If this is the case that could mean the Republican or Democratic candidate did better in targeting those voters in one election than the other. 
+
 #
 
 #### To test whether the results were statistically significance I calculated the p-value of each linear correlation. Significance value = 0.05. If the p-value was less than the significance value then the results were statistically significant and there was a linear relationship between the variables. 
+
 #
 ```{r Data Input and Manipulation,include=FALSE}
 ## Final Project Code
