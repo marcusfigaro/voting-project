@@ -8,9 +8,11 @@ title: "Analysis"
 
 $y = B0 + B1*x$
 
-#### I then found the Intercept, slope, and r-squared value of the regression line using the mean, sd, and cor functions in R. I then graphed the regression lines and used the equations to find if there was a positive, negative, or nonexistent correlation between the demographic data and the election data. This regression would also show if a demographic favored one of the candidates more in one of the elections than the other. If this is the case that could mean the Republican or Democratic candidate did better in targeting those voters in one election than the other.
+#### I then found the Intercept, slope, and r-squared value of the regression line using the mean, sd, and cor functions in R. I then graphed the regression lines and used the equations to find if there was a positive, negative, or nonexistent correlation between the demographic data and the election data. This regression would also show if a demographic favored one of the candidates more in one of the elections than the other. If this is the case that could mean the Republican or Democratic candidate did better in targeting those voters in one election than the other. 
 #
-```{r Data Input and Manipulation, include=FALSE}
+#### To test whether the results were statistically significance I calculated the p-value of each linear correlation. Significance value = 0.05. If the p-value was less than the significance value then the results were statistically significant and there was a linear relationship between the variables. 
+#
+```{r Data Input and Manipulation,include=FALSE}
 ## Final Project Code
 
 # Data
@@ -1339,7 +1341,7 @@ VoteData_2016_master<-tibble(VoteData_2016_master,white_vote_vec,black_vote_vec,
 
 ```
 
-```{r include=FALSE}
+```{r,include=FALSE}
 ## White Voter Regression (REP)
 x=VoteData_master$white_vote_master
 y=VoteData_master$REPVotesMaster
@@ -1349,6 +1351,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r1 <- cor(x,y)
+cor.test(x,y)$p.value
 
 w1<-VoteData_master%>% 
   ggplot(aes(white_vote_master, REPVotesMaster)) + 
@@ -1366,6 +1369,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r2 <- cor(x,y)
+cor.test(x,y)$p.value
 
 w2<-VoteData_2012_master%>% 
   ggplot(aes(white_vote_vec, REPVotes)) + 
@@ -1383,6 +1387,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r3 <- cor(x,y)
+cor.test(x,y)$p.value
 
 w3<-VoteData_2016_master%>% 
   ggplot(aes(white_vote_vec, REPVotes)) + 
@@ -1400,6 +1405,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r4 <- cor(x,y)
+cor.test(x,y)$p.value
 
 w4<-VoteData_master%>% 
   ggplot(aes(white_vote_master, DEMVotesMaster)) + 
@@ -1417,6 +1423,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r5 <- cor(x,y)
+cor.test(x,y)$p.value
 
 w5<-VoteData_2012_master%>% 
   ggplot(aes(white_vote_vec, DEMVotes)) + 
@@ -1433,6 +1440,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r6 <- cor(x,y)
+cor.test(x,y)$p.value
 
 w6<-VoteData_2016_master%>% 
   ggplot(aes(white_vote_vec, DEMVotes)) + 
@@ -1452,14 +1460,14 @@ library(gridExtra)
 grid.arrange(w1,w4,w2,w5,w3,w6)
 ```
 
-Election Ticket | Regression Equation | R-squared value
-------------- | ----------------------|----------------
-REP 2012 (Romney/Ryan) | y = 0.391x + 26.337 | 0.55731
-DEM 2012 (Obama/Biden) | y = -0.391x + 72.154 | 0.570574
-REP 2016 (Trump/Pence) | y = 0.494x + 20.037 | 0.65351
-DEM 2016 (Clinton/Kaine) | y = -0.495x + 75.146 | 0.68758
+Election Ticket | Regression Equation | R-squared value | P-value
+------------- | ----------------------|----------------|-----------
+REP 2012 (Romney/Ryan) | y = 0.391x + 26.337 | 0.55731 | 1.822e-05
+DEM 2012 (Obama/Biden) | y = -0.391x + 72.154 | 0.570574 | 1.27e-05
+REP 2016 (Trump/Pence) | y = 0.494x + 20.037 | 0.65351 | 1.01e-06
+DEM 2016 (Clinton/Kaine) | y = -0.495x + 75.146 | 0.68758 | 3.02e-07
 
-#### Counties with larger white populations favored Republican tickets more, and favored Donald Trump in 2016 much more than Mitt Romney in 2012.
+#### Counties with larger white populations favored Republican tickets more, and favored Donald Trump in 2016 much more than Mitt Romney in 2012. These results are statistically significant, and there is a correlation between percentage of white people in a county and that county's voting.
 
 ```{r echo=FALSE}
 vote_corr_white2016 <- tibble(VoteData_2016_master,"white_pop" = white_vote_vec)
@@ -1487,7 +1495,7 @@ ggplot(vote_corr_white2016,aes(x=reorder(County_Names,white_pop)))+
 
 
 
-```{r Black Voter Regression, include=FALSE}
+```{r Black Voter Regression,include=FALSE}
 
 ## Black Voter Regression (REP)
 x=VoteData_master$black_vote_master
@@ -1498,6 +1506,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r1 <- cor(x,y)
+
 
 b1<-VoteData_master%>% 
   ggplot(aes(black_vote_master, REPVotesMaster)) + 
@@ -1515,6 +1524,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r2 <- cor(x,y)
+cor.test(x,y)$p.value
 
 b2<-VoteData_2012_master%>% 
   ggplot(aes(black_vote_vec, REPVotes)) + 
@@ -1532,6 +1542,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r3 <- cor(x,y)
+cor.test(x,y)$p.value
 
 b3<-VoteData_2016_master%>% 
   ggplot(aes(black_vote_vec, REPVotes)) + 
@@ -1566,6 +1577,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r5 <- cor(x,y)
+cor.test(x,y)$p.value
 
 b5<-VoteData_2012_master%>% 
   ggplot(aes(black_vote_vec, DEMVotes)) + 
@@ -1583,6 +1595,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r6 <- cor(x,y)
+cor.test(x,y)$p.value
 
 b6<-VoteData_2016_master%>% 
   ggplot(aes(black_vote_vec, DEMVotes)) + 
@@ -1599,14 +1612,14 @@ c(r6^2,r6 * s_y/s_x, m_y - r6 * s_y/s_x * m_x)
 grid.arrange(b1,b4,b2,b5,b3,b6,ncol=2)
 ```
 
-Election Ticket | Regression Equation | R-squared value
-------------- | ----------------------|----------------
-REP 2012 (Romney/Ryan) | y = -0.783x + 61.524 | 0.46325
-DEM 2012 (Obama/Biden) | y = 0.784x + 36.936 | 0.47609
-REP 2016 (Trump/Pence) | y = -0.958x + 64.028 | 0.51034
-DEM 2016 (Clinton/Kaine) | y = 0.948x + 31.236| 0.52304
+Election Ticket | Regression Equation | R-squared value | P-value
+------------- | ----------------------|----------------|-----------
+REP 2012 (Romney/Ryan) | y = -0.783x + 61.524 | 0.46325 | 0.0002
+DEM 2012 (Obama/Biden) | y = 0.784x + 36.936 | 0.47609 | 0.0001
+REP 2016 (Trump/Pence) | y = -0.958x + 64.028 | 0.51034 | 6.04e-05
+DEM 2016 (Clinton/Kaine) | y = 0.948x + 31.236| 0.52304 | 4.42e-05
 
-#### Counties with a larger black population favored the democratic tickets more, and favored Clinton in 2016 more than Obama in 2012.
+#### Counties with a larger black population favored the democratic tickets more, and favored Clinton in 2016 more than Obama in 2012.There is a statistically significant linear correlation between percentage of black people in a county and percentage of democrat and republican votes.
 
 ```{r echo=FALSE}
 vote_corr_black2016 <- tibble(VoteData_2016_master,"black_pop" = black_vote_vec)
@@ -1635,7 +1648,7 @@ ggplot(vote_corr_black2016,aes(x=reorder(County_Names,black_pop)))+
 #
 #### There is no significant correlation between Percentage of Native Americans in a County and the percentage vote for each candidate. Their population is too small to make a statistical inference based on it
 
-```{r Native American Regression, include=FALSE}
+```{r Native American Regression,include=FALSE}
 # Native American Votes Regression (REP)
 x=VoteData_master$na_vote_master
 y=VoteData_master$REPVotesMaster
@@ -1645,6 +1658,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r <- cor(x,y)
+cor.test(x,y)$p.value
 
 n1<-VoteData_master%>% 
   ggplot(aes(na_vote_master, REPVotesMaster)) + 
@@ -1662,6 +1676,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r <- cor(x,y)
+cor.test(x,y)$p.value
 
 n2<-VoteData_master%>% 
   ggplot(aes(na_vote_master, DEMVotesMaster)) + 
@@ -1676,13 +1691,13 @@ c(r^2,r * s_y/s_x,m_y - r * s_y/s_x * m_x)
 grid.arrange(n1,n2,ncol=2)
 ```
 
-Party Ticket (2012 and 2016) | Regression Equation | R-squared value
-------------- | ----------------------|----------------
-REP | y = 2.968x + 48.553 | 0.0012981
-DEM | y = -3.243x + 48.379 | 0.001558
+Party Ticket (2012 and 2016) | Regression Equation | R-squared value | P-value
+------------- | ----------------------|----------------|----------
+REP | y = 2.968x + 48.553 | 0.0012981 | 0.804
+DEM | y = -3.243x + 48.379 | 0.001558 | 0.786
 
 #
-#### There is no significant correlation between Percentage of Native Americans in a County and the percentage vote for each candidate. Their population is too small to make a statistical inference based on it
+#### There is no statistically significant correlation between Percentage of Native Americans in a County and the percentage vote for each candidate.
 #
 #
 ## Linear Regression of Pacific Islander Population Data
@@ -1698,6 +1713,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r <- cor(x,y)
+cor.test(x,y)$p.value
 
 p1<-VoteData_master%>% 
   ggplot(aes(pi_vote_master, REPVotesMaster)) + 
@@ -1715,6 +1731,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r <- cor(x,y)
+cor.test(x,y)$p.value
 
 p2<-VoteData_master%>% 
   ggplot(aes(pi_vote_master, DEMVotesMaster)) + 
@@ -1729,17 +1746,17 @@ c(r^2,r * s_y/s_x,m_y - r * s_y/s_x * m_x)
 grid.arrange(p1,p2,ncol=2)
 ```
 
-Party Ticket (2012 and 2016) | Regression Equation | R-squared value
-------------- | ----------------------|----------------
-REP | y = -27.827x + 52.884 | 0.016961
-DEM | y = 24.488x + 44.262 | 0.013209
+Party Ticket (2012 and 2016) | Regression Equation | R-squared value | P-value
+------------- | ----------------------|----------------|--------------
+REP | y = -27.827x + 52.884 | 0.016961 | 0.367
+DEM | y = 24.488x + 44.262 | 0.013209 | 0.427
 
 #
-#### There is no significant correlation between Percentage of Hawaiians or Pacific Islanders in a County and the percentage vote for each candidate. Their population is too small to make a statistical inference based on it
+#### There is no statistically significant correlation between Percentage of Hawaiians or Pacific Islanders in a County and the percentage vote for each candidate. Their population is too small to make a statistical inference based on it
 #
 ## Linear Regression of Asian Population Data
 
-```{r Asian Votes Regression, include=FALSE}
+```{r Asian Votes Regression,include=FALSE}
 #Asian Votes Regression (REP)
 x=VoteData_master$asian_vote_master
 y=VoteData_master$REPVotesMaster
@@ -1766,6 +1783,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r <- cor(x,y)
+cor.test(x,y)$p.value
 
 a2<-VoteData_2012_master%>% 
   ggplot(aes(asian_vote_vec, REPVotes)) + 
@@ -1783,6 +1801,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r <- cor(x,y)
+cor.test(x,y)$p.value
 
 a3<-VoteData_2016_master%>% 
   ggplot(aes(asian_vote_vec, REPVotes)) + 
@@ -1817,6 +1836,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r <- cor(x,y)
+cor.test(x,y)$p.value
 
 a5<-VoteData_2012_master%>% 
   ggplot(aes(asian_vote_vec, DEMVotes)) + 
@@ -1834,6 +1854,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r <- cor(x,y)
+cor.test(x,y)$p.value
 
 a6<-VoteData_2016_master%>% 
   ggplot(aes(asian_vote_vec, DEMVotes)) + 
@@ -1848,12 +1869,12 @@ c(r^2,r * s_y/s_x,m_y - r * s_y/s_x * m_x)
 grid.arrange(a1,a4,a2,a5,a3,a6,ncol=2)
 ```
 
-Election Ticket | Regression Equation | R-squared value
-------------- | ----------------------|----------------
-REP 2012 (Romney/Ryan) | y = -3.284x + 59.393 | 0.28008
-DEM 2012 (Obama/Biden) | y = 3.207x + 39.313 | 0.27325
-REP 2016 (Trump/Pence) | y = -4.518x + 62.839 | 0.38962
-DEM 2016 (Clinton/Kaine) | y = 4.169x + 33.27| 0.347397
+Election Ticket | Regression Equation | R-squared value | P-value
+------------- | ----------------------|----------------|------------
+REP 2012 (Romney/Ryan) | y = -3.284x + 59.393 | 0.28008 | 0.0065
+DEM 2012 (Obama/Biden) | y = 3.207x + 39.313 | 0.27325 | 0.0073
+REP 2016 (Trump/Pence) | y = -4.518x + 62.839 | 0.38962 | 0.00085
+DEM 2016 (Clinton/Kaine) | y = 4.169x + 33.27| 0.347397 | 0.00193
 
 #
 ```{r echo=FALSE}
@@ -1879,7 +1900,7 @@ ggplot(vote_corr_asian2016,aes(x=reorder(County_Names,asian_pop)))+
 ```
 
 ## Linear Regression of Latino Population Data
-```{r Latino Voter Regression, include=FALSE}
+```{r Latino Voter Regression,include=FALSE}
 #Latino Voter Regression (REP)
 x=VoteData_master$latino_vote_master
 y=VoteData_master$REPVotesMaster
@@ -1906,6 +1927,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r <- cor(x,y)
+cor.test(x,y)$p.value
 
 l2<-VoteData_2012_master%>% 
   ggplot(aes(latino_vote_vec, REPVotes)) + 
@@ -1923,6 +1945,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r <- cor(x,y)
+cor.test(x,y)$p.value
 
 l3<-VoteData_2016_master%>% 
   ggplot(aes(latino_vote_vec, REPVotes)) + 
@@ -1957,6 +1980,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r <- cor(x,y)
+cor.test(x,y)$p.value
 
 l5<-VoteData_2012_master%>% 
   ggplot(aes(latino_vote_vec, DEMVotes)) + 
@@ -1974,6 +1998,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r <- cor(x,y)
+cor.test(x,y)$p.value
 
 l6<-VoteData_2016_master%>% 
   ggplot(aes(latino_vote_vec, DEMVotes)) + 
@@ -1990,15 +2015,15 @@ grid.arrange(l1,l4,l2,l5,l3,l6,ncol=2)
 #### The Regression Results of Latino Voter Data showed that the strongest correlation between votes and voters occurred in the 2016 election
 #
 
-Election Ticket | Regression Equation | R-squared value
-------------- | ----------------------|----------------
-REP 2012 (Romney/Ryan) | y = -0.288x + 56.128 | 0.22838
-DEM 2012 (Obama/Biden) | y = 0.289x + 42.341 | 0.234903
-REP 2016 (Trump/Pence) | y = -0.370x + 57.780 | 0.27620
-DEM 2016 (Clinton/Kaine) | y = 0.379x + 37.145| 0.30333
+Election Ticket | Regression Equation | R-squared value | P-value
+------------- | ----------------------|----------------|-----------
+REP 2012 (Romney/Ryan) | y = -0.288x + 56.128 | 0.22838 | 0.0157
+DEM 2012 (Obama/Biden) | y = 0.289x + 42.341 | 0.234903 | 0.0141
+REP 2016 (Trump/Pence) | y = -0.370x + 57.780 | 0.27620 | 0.00698
+DEM 2016 (Clinton/Kaine) | y = 0.379x + 37.145| 0.30333 | 0.00433
 
 #
-#### Counties with more Latino residents broke more strongly for Clinton in 2016 than for Obama in 2012 but not by a large margin.
+#### Counties with more Latino residents broke more strongly for Clinton in 2016 than for Obama in 2012 but not by a large margin. There is a statistically significant linear correlation between these variables in both elections.
 #
 ```{r echo=FALSE}
 vote_corr_latino2016 <- tibble(VoteData_2016_master,"latino_pop" = latino_vote_vec)
@@ -2024,7 +2049,7 @@ ggplot(vote_corr_latino2016,aes(x=reorder(County_Names,latino_pop)))+
 
 
 ## Linear Regression of Senior Citizen Population Data
-```{r include=FALSE}
+```{r,include=FALSE}
 #Senior Citizen Voter Regression (REP)
 
 x=VoteData_master$sc_vote_master
@@ -2052,6 +2077,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r <- cor(x,y)
+cor.test(x,y)$p.value
 
 s2<-VoteData_2012_master%>% 
   ggplot(aes(sc_vote_vec, REPVotes)) + 
@@ -2069,6 +2095,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r <- cor(x,y)
+cor.test(x,y)$p.value
 
 s3<-VoteData_2016_master%>% 
   ggplot(aes(sc_vote_vec, REPVotes)) + 
@@ -2103,6 +2130,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r <- cor(x,y)
+cor.test(x,y)$p.value
 
 s5<-VoteData_2012_master%>% 
   ggplot(aes(sc_vote_vec, DEMVotes)) + 
@@ -2120,6 +2148,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r <- cor(x,y)
+cor.test(x,y)$p.value
 
 s6<-VoteData_2016_master%>% 
   ggplot(aes(sc_vote_vec, DEMVotes)) + 
@@ -2137,15 +2166,15 @@ grid.arrange(s1,s4,s2,s5,s3,s6,ncol=2)
 
 #
 
-Election Ticket | Regression Equation | R-squared value
-------------- | ----------------------|----------------
-REP 2012 (Romney/Ryan) | y = 0.678x + 33.584 | 0.58837
-DEM 2012 (Obama/Biden) | y = -0.666x + 64.594 | 0.57978
-REP 2016 (Trump/Pence) | y = 0.810x + 30.325 | 0.61653
-DEM 2016 (Clinton/Kaine) | y = -0.763x + 63.647| 0.57276
+Election Ticket | Regression Equation | R-squared value | P-value
+------------- | ----------------------|----------------|------------
+REP 2012 (Romney/Ryan) | y = 0.678x + 33.584 | 0.58837 | 7.708e-06
+DEM 2012 (Obama/Biden) | y = -0.666x + 64.594 | 0.57978 | 9.838e-06
+REP 2016 (Trump/Pence) | y = 0.810x + 30.325 | 0.61653 | 3.342e-06
+DEM 2016 (Clinton/Kaine) | y = -0.763x + 63.647| 0.57276 | 1.197e-05
 
 #
-#### The Regression Results of Senior Citizen Voter Data showed that the strongest correlation between votes and voters occurred in the 2016 election. Also, elderly voters broke much harder for Trump in 2016 than they did for Romney in 2012, as evidenced by the stronger and significantly more positive linear correlation in 2016.
+#### The Regression Results of Senior Citizen Voter Data showed that the strongest correlation between votes and voters occurred in the 2016 election. Also, elderly voters broke much harder for Trump in 2016 than they did for Romney in 2012, as evidenced by the stronger and significantly more positive linear correlation in 2016. There is a statistically significant linear correlation between these variables.
 
 ```{r echo=FALSE}
 vote_corr_sc2016 <- tibble(VoteData_2016_master,"sc_pop" = sc_vote_vec)
@@ -2171,7 +2200,7 @@ ggplot(vote_corr_sc2016,aes(x=reorder(County_Names,sc_pop)))+
 
 ## Linear Regression of College Graduate Population Data
 
-```{r include=FALSE}
+```{r,include=FALSE}
 # College Grad Regression (REP)
 x=VoteData_master$grad_vote_master
 y=VoteData_master$REPVotesMaster
@@ -2198,6 +2227,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r <- cor(x,y)
+cor.test(x,y)$p.value
 
 g2<-VoteData_2012_master%>% 
   ggplot(aes(grad_vote_vec, REPVotes)) + 
@@ -2215,6 +2245,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r <- cor(x,y)
+cor.test(x,y)$p.value
 
 g3<-VoteData_2016_master%>% 
   ggplot(aes(grad_vote_vec, REPVotes)) + 
@@ -2249,6 +2280,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r <- cor(x,y)
+cor.test(x,y)$p.value
 
 g5<-VoteData_2012_master%>% 
   ggplot(aes(grad_vote_vec, DEMVotes)) + 
@@ -2266,6 +2298,7 @@ m_y <- mean(y)
 s_x <- sd(x)
 s_y <- sd(y)
 r <- cor(x,y)
+cor.test(x,y)$p.value
 
 g6<-VoteData_2016_master%>% 
   ggplot(aes(grad_vote_vec, DEMVotes)) + 
@@ -2281,14 +2314,14 @@ grid.arrange(g1,g4,g2,g5,g3,g6,ncol=2)
 ```
 
 
-Election Ticket | Regression Equation | R-squared value
-------------- | ----------------------|----------------
-REP 2012 (Romney/Ryan) | y = -0.278x + 58.227 | 0.04584
-DEM 2012 (Obama/Biden) | y = 0.274x + 40.380 | 0.045523
-REP 2016 (Trump/Pence) | y = -0.587x + 67.290 | 0.15058
-DEM 2016 (Clinton/Kaine) | y = 0.529x + 29.543| 0.12798
+Election Ticket | Regression Equation | R-squared value | P-value
+------------- | ----------------------|----------------|-----------
+REP 2012 (Romney/Ryan) | y = -0.278x + 58.227 | 0.04584 | 0.304
+DEM 2012 (Obama/Biden) | y = 0.274x + 40.380 | 0.045523 | 0.0553
+REP 2016 (Trump/Pence) | y = -0.587x + 67.290 | 0.15058 | 0.3058
+DEM 2016 (Clinton/Kaine) | y = 0.529x + 29.543| 0.12798 | 0.079
 
-#### The Regression Results of College Graduate Voter Data showed that the strongest correlation between votes and voters occurred in the 2016 election. Voters also broke more strongly for Clinton in 2016 than they did for Obama in 2012.
+#### The Regression Results of College Graduate Voter Data showed that the correlation between percentage college graguates and percentage DEM and REP votes was not statistically significant.
 #
 
 ```{r echo=FALSE}
@@ -2317,9 +2350,9 @@ ggplot(vote_corr_grad2016,aes(x=reorder(County_Names,grad_pop)))+
 # Conclusion
 #
 
-The data found that there was a significant correlation between demographics data and voting. The deomgraphics data that had the most significant correlation with an increase in voting were Black Voters and Senior Citizen Voters. Both of these demographics also broke more strongly towards their favored parties in the 2016 elections. Counties with more senior citizens trended more heavily towards Donald Trump than Mitt Romney, and counties with black voters trended more heavily towards Hillary CLinton than Barack Obama. I deduced this because the slopes for the 2016 linear regression equations were larger, meaning the votes trended more heavily towards one party when that population demographic increased. This difference in data was likely due to the difference in candidates. Donald Trump was a candidate that appealed to conservative values with his motto "Make America Great Again." These ideas are likely what appealed most to Elderly voters. Counties with black voters, despite the running of the first black president for reelection, appeared to favor Hillary CLinton more by percentage. This could be due to their mistrust of Donald Trump due to his many controversial and inflammatory comments, or innacurracies in the model that will be discussed later.
+The data found that there was a significant correlation between demographics data and voting. The demographics data that had the most significant correlation with an increase in voting were Black Voters and Senior Citizen Voters. Both of these demographics also broke more strongly towards their favored parties in the 2016 elections. Counties with more senior citizens trended more heavily towards Donald Trump than Mitt Romney, and counties with black voters trended more heavily towards Hillary Clinton than Barack Obama. I deduced this because the slopes for the 2016 linear regression equations were larger, meaning the votes trended more heavily towards one party when that population demographic increased. This difference in data was likely due to the difference in candidates. Donald Trump was a candidate that appealed to conservative values with his motto "Make America Great Again." These ideas are likely what appealed most to Elderly voters. Counties with black voters, despite the running of the first black president for reelection, appeared to favor Hillary Clinton more by percentage. This could be due to their mistrust of Donald Trump due to his many controversial and inflammatory comments, or inacurracies in the model that will be discussed later.
 
-Another surprising result of this model is the apparent lack of correlation between a county's Latino population and how that county voted, despite how large the Latino population is in Florida. This is likely due to the fact that Latinos encompass a large variety of people from different countries and regions. The term "latinos" is a very general term that could encompass people from Mexico, Cuba, Puerto Rico, Central America, and South America. Attempting to predict how these people will vote is therefore quite difficult, and pollsters should redefine the term in the future. Also, the population of college graduates appeared to have a more significant correlation in the 2016 election than in 2012. The 2020 election was the first election that saw pollsters factoring college educated percentages of states and counties into their models, and this is because of the 2016 election. Donald Trump's appeal to uneducated, working class voters was indeed effective. His ability to capitalize on Clinton's inability to appeal to these voters may have been instrumental in him winning the election. However, this correlation could be due to the presence of more college educated voters in urban rather than rural counties. If I were to redo this project, I would include more rural Florida counties to observe how class and education influenced these elections.
+Another surprising result of this model is the apparent lack of correlation between a county's Latino population and how that county voted, despite how large the Latino population is in Florida. This is likely due to the fact that Latinos encompass a large variety of people from different countries and regions. The term "latinos" is a very general term that could encompass people from Mexico, Cuba, Puerto Rico, Central America, and South America. Attempting to predict how these people will vote is therefore quite difficult, and pollsters should redefine the term in the future. Surprisingly, there was no statistically significant correlation between percentage college graduates in a county and how that county voted. This became an important distinction between Democratic and Republican voters in future elections, but this was not significant in the observed counties in Florida. If I were to redo this project, I would include more rural Florida counties to observe how class and education influenced these elections.
 
 Some of the weaknesses of this model include the number of counties. Including more counties would enable me to show a greater correlation between demographics and voting choice. Also, it is difficult to say which demographic had the greatest effect on the election's outcome in each county. You could say the largest proportion had the greatest effect, but there are several factors that influence voting, including economic standing age, and population density. Just because a county like Miami-Dade and Broward may have a greater number of Latino and back residents than white residents, impoverished minority communities often experience a lower voter turnout than affluent white communities due to gaps in education, class, and population density. Urban, inner-city, residents of Florida's largest cities can often experience very long wait times due to the large population density and limited polling places. 
 
